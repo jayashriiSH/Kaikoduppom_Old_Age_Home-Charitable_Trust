@@ -2,6 +2,9 @@ import { useState } from 'react'
 import PageTransition from '../components/PageTransition'
 import SectionHeading from '../components/SectionHeading'
 import { motion, AnimatePresence } from 'framer-motion'
+import qr1 from '../assets/QR-1.jpg'
+import qr2 from '../assets/QR-2.jpg'
+import qr3 from '../assets/QR-3.jpg'
 import { Phone, Mail, MapPin, Clock, ChevronDown, CreditCard, QrCode, FileText, X, ZoomIn } from 'lucide-react'
 
 const faqs = [
@@ -20,7 +23,7 @@ const bankAccounts = [
     ifsc: 'YESB0001064',
     branch: 'Madipakkam, Chennai – 600 091',
     upiId: 'MAB000044690066015@YESBANK',
-    qrImage: '/src/assets/QR-1.jpg',
+    qrImage: qr1,
   },
   {
     bank: 'South Indian Bank',
@@ -31,7 +34,7 @@ const bankAccounts = [
     micr: '032605',
     branch: 'Medavakkam, Chennai – 600 100',
     upiId: 'bhqr.2569103A@sib',
-    qrImage: '/src/assets/QR-2.jpg',
+    qrImage: qr2,
   },
 ]
 
@@ -339,13 +342,19 @@ export default function Contact() {
             <div className="flex-shrink-0 flex flex-col items-center">
               <div
                 className="relative cursor-zoom-in group"
-                onClick={() => setLightboxImg({ src: '/src/assets/QR-3.jpg', alt: 'UPI QR code', label: 'Kaikoduppom Charitable Trust — UPI Payment' })}
+               onClick={() =>
+  setLightboxImg({
+    src: qr3,
+    alt: 'UPI QR code',
+    label: 'Kaikoduppom Charitable Trust — UPI Payment'
+  })
+}
               >
-                <img
-                  src="/src/assets/QR-3.jpg"
-                  alt="UPI QR code for Kaikoduppom Charitable Trust"
-                  className="w-36 h-36 object-contain rounded-xl border border-border group-hover:border-gold/40 transition-all"
-                />
+               <img
+  src={qr3}
+  alt="UPI QR code for Kaikoduppom Charitable Trust"
+  className="w-36 h-36 object-contain rounded-xl border border-border group-hover:border-gold/40 transition-all"
+/>
                 <div className="absolute inset-0 rounded-xl bg-black/0 group-hover:bg-black/10 transition-all flex items-center justify-center">
                   <ZoomIn size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow" />
                 </div>
