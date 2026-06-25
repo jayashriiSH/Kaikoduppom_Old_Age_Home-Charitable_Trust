@@ -2,10 +2,9 @@ import PageTransition from '../components/PageTransition'
 import SectionHeading from '../components/SectionHeading'
 import Timeline from '../components/Timeline'
 import SupportMission from '../components/SupportMission'
-import { Target, Eye, Heart, Award, HelpingHand } from 'lucide-react'
+import { Target, Eye, Heart, Award, HelpingHand, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
-import logoImg from '../assets/images.png'
-import posterImg from '../assets/poster.png'
+import bannerImg from '../assets/banner.jpg'
 
 const values = [
   { icon: Heart,       name: 'Unconditional Love', desc: 'Treating residents as our own parents, showering them with warmth and affection.' },
@@ -34,7 +33,7 @@ export default function About() {
             A Shelter of Love &amp; Dignity
           </h1>
           <p className="text-white/60 text-sm sm:text-base section-description">
-            Registered charitable trust operating in Puducherry, dedicated to holding the hands of the most vulnerable and abandoned elders.
+            A registered charitable trust committed to providing compassionate care, dignity, and support for abandoned and destitute elders.
           </p>
         </div>
       </div>
@@ -42,76 +41,63 @@ export default function About() {
       {/* Main Info Section */}
       <section className="section-padding bg-warm-white">
         <div className="site-container">
-          <div
-            className="grid grid-cols-1 lg:grid-cols-2 items-center"
-            style={{ gap: '32px' }}
-          >
-            {/* Image — Left */}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+
+            {/* Image — Left Column */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative flex justify-center"
+              className="w-full lg:w-2/5 flex-shrink-0"
             >
-              <div className="relative w-full max-w-sm lg:max-w-full">
-                <div className="rounded-2xl overflow-hidden shadow-xl w-full" style={{ aspectRatio: '4/5', maxHeight: '480px' }}>
-                  <img
-                    src={logoImg}
-                    alt="Kaikoduppom Trust – our home"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Floating thumbnail */}
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-xl overflow-hidden border-4 border-white shadow-xl hidden sm:block">
-                  <img src={posterImg} alt="Trust mission poster" className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-gold/10 rounded-2xl -z-10" />
-                <div className="absolute -top-4 -right-4 w-28 h-28 border-2 border-gold/20 rounded-2xl -z-10" />
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src={bannerImg}
+                  alt="Kaikoduppom Old Age Home"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </motion.div>
 
-            {/* Text — Right */}
+            {/* Text — Right Column */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-full lg:w-3/5"
             >
-              <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-navy-dark mb-5 leading-snug">
+              <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-navy-dark mb-6 leading-snug">
                 Our Genesis &amp; Mission
               </h2>
-              <div className="space-y-3 text-text-muted text-sm sm:text-base leading-relaxed mb-5">
+              <div className="space-y-4 text-text-muted text-sm sm:text-base leading-relaxed">
                 <p>
-                  Founded by <strong className="text-navy-dark">Mr. Jagadeesan Sellamuthu</strong>, Kaikoduppom
-                  (which translates to "Let us hold hands") was born out of a profound need to address the rising
-                  neglect of elderly parents.
+                  Kaikoduppom Old Age Home is a place of compassion, dignity, and hope for abandoned and destitute elderly people who have nowhere else to turn. Our mission is to provide a safe, loving, and completely free home where every resident is treated with respect, care, and kindness.
                 </p>
                 <p>
-                  What began as a small initiative soon evolved into a government-recognized charitable trust.
-                  Today, the home provides shelter, healthcare, psychological support, and hospice care to
-                  destitute senior citizens free of charge.
+                  We admit many elders through referrals and official police station memos, ensuring that vulnerable individuals receive immediate shelter, food, medical attention, and emotional support. While some residents have been successfully reunited with their families, many continue to live with us as part of our extended family, receiving dedicated care throughout their lives.
                 </p>
                 <p>
-                  Our residents receive nutritious home-cooked meals, 24/7 personal care assistance, regular
-                  medical checkups, and above all, a family atmosphere where they are treated with absolute respect.
+                  Beyond elder care, we also support physically challenged individuals by providing monthly assistance such as rice bags, medical aid, and other essential needs. Our commitment is to stand beside those who are most in need and help them live with dignity.
                 </p>
-              </div>
-              <div className="border-l-4 border-gold bg-cream p-5 rounded-r-xl">
-                <p className="text-navy-dark font-playfair italic font-medium text-sm leading-relaxed">
-                  "No person who has contributed a lifetime to society should have to spend their twilight years
-                  in fear, hunger, or neglect. We exist to be their children when they have none."
+                <p>
+                  At Kaikoduppom Old Age Home, our care does not end with daily support. We remain with our residents through every stage of life, offering compassionate service and ensuring that even their final journey is handled with respect and humanity.
+                </p>
+                <p>
+                  Driven by love and selfless service, we continue to work toward a future where no elderly person is left abandoned and every vulnerable individual has the opportunity to live with safety, comfort, and hope.
                 </p>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* Mission & Vision & Dream */}
       <section className="section-padding bg-cream">
         <div className="site-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -124,8 +110,7 @@ export default function About() {
               </div>
               <h3 className="font-playfair text-2xl font-bold text-navy-dark mb-4">Our Mission</h3>
               <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-                To rescue, rehabilitate, and nurture abandoned and destitute elders. We ensure they receive hot meals,
-                round-the-clock physical assistance, access to quality medical supervision, and hospice care with absolute dignity.
+                To serve abandoned and destitute elders with free care, shelter, food, medical assistance, and compassion—restoring dignity and hope to every life we touch.
               </p>
             </motion.div>
 
@@ -141,8 +126,23 @@ export default function About() {
               </div>
               <h3 className="font-playfair text-2xl font-bold text-navy-dark mb-4">Our Vision</h3>
               <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-                To build a compassionate society where elder neglect is eradicated. We envision expanding our specialized
-                facilities for cancer palliative care, housing more residents, and inspiring youth to protect their senior citizens.
+                To create a future where every elderly person is valued, protected, and cared for with love, ensuring that no one is left behind or forgotten.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-white p-8 sm:p-10 rounded-2xl border border-border shadow-sm"
+            >
+              <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6">
+                <Sparkles className="w-6 h-6 text-gold-dark" />
+              </div>
+              <h3 className="font-playfair text-2xl font-bold text-navy-dark mb-4">Our Dream</h3>
+              <p className="text-text-muted text-sm sm:text-base leading-relaxed">
+                We envision creating a permanent care home capable of accommodating nearly 500 people, offering quality healthcare, nutritious meals, safe shelter, and compassionate support so that no elder in need is left without a home.
               </p>
             </motion.div>
           </div>
@@ -171,7 +171,7 @@ export default function About() {
       </section>
 
       {/* History & Timeline */}
-      <section className="section-padding bg-cream">
+      <section className="section-padding bg-warm-white">
         <div className="site-container">
           <div className="max-w-5xl mx-auto">
             <SectionHeading

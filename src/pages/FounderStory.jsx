@@ -5,21 +5,45 @@ import SupportMission from '../components/SupportMission'
 import { motion } from 'framer-motion'
 import { Quote } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import posterImg from '../assets/poster.png'
+import founderImg from '../assets/founder.jpg'
 
 const founderMilestones = [
-  { year: '2015',    title: 'The Encounter',        description: 'Mr. Jagadeesan witnesses a terminally ill, homeless elderly man on the streets of Puducherry, leading to a deep urge to take action.' },
-  { year: '2016',    title: 'First Rented Space',   description: 'Starting with his own personal savings, he leases a small house to accommodate and feed 5 abandoned senior citizens.' },
-  { year: '2018',    title: 'Official Registration', description: 'As word of the shelter spreads, Kaikoduppom Trust is officially registered as a charitable trust with State Govt.' },
-  { year: '2020',    title: 'Pandemic Response',    description: 'Despite lockdowns, the home maintains 100% safety protocols and begins running outreach food drives for street elders.' },
-  { year: '2022',    title: 'Specialized Ward',     description: 'Launches a dedicated medical unit and bedridden care services to support paralyzed and terminal cancer patients.' },
-  { year: 'Present', title: 'A Legacy of Care',     description: 'Now managing a fully recognized home with round-the-clock nursing staff, backed by 521+ positive reviews.' },
+  {
+    year: '2013',
+    title: 'The Beginning',
+    description: 'Founded through the vision and compassion of Founder Dr. Jagadeesan Sellamuthu, Kaikoduppom was born from a simple belief that every elderly person deserves care, dignity, and a place to call home.',
+  },
+  {
+    year: '2014',
+    title: 'A Humble Start',
+    description: 'With his own personal savings, the founder began by providing shelter, food, and daily care to abandoned elders, laying the foundation for a mission driven by kindness and selfless service.',
+  },
+  {
+    year: '2017',
+    title: 'Growing with Purpose',
+    description: 'As the need grew, the trust expanded its services and strengthened its commitment to supporting destitute and abandoned senior citizens with compassion and respect.',
+  },
+  {
+    year: '2020',
+    title: 'Serving Through Challenges',
+    description: 'Through every challenge, the focus remained unchanged — ensuring uninterrupted care, safety, and support for every resident.',
+  },
+  {
+    year: '2022',
+    title: 'Expanding Care',
+    description: 'The home introduced enhanced medical assistance and dedicated care for bedridden residents, providing comfort and dignity to those with greater needs.',
+  },
+  {
+    year: 'Today',
+    title: 'Today',
+    description: 'Kaikoduppom remains committed to offering shelter, nutritious meals, medical support, and loving care to abandoned and destitute elders, creating a family where they can live with dignity and hope.',
+  },
 ]
 
 export default function FounderStory() {
   return (
     <PageTransition>
-      {/* Banner Header */}
+      {/* ── Banner Header ── */}
       <div className="relative bg-navy-dark min-h-[50vh] flex flex-col justify-center items-center overflow-hidden text-center py-16">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -35,21 +59,19 @@ export default function FounderStory() {
             The Heart Behind the Trust
           </span>
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-            Founder's Story
+            Founder's Journey
           </h1>
           <p className="text-white/60 text-sm sm:text-base section-description">
-            Discover the personal journey of Mr. Jagadeesan Sellamuthu and the spark that built Kaikoduppom Old Age Home.
+            Every meaningful mission begins with a purpose — and for Dr. Jagadeesan Sellamuthu, that purpose has always been to serve humanity with compassion, dignity, and selfless commitment.
           </p>
         </div>
       </div>
 
-      {/* Biographical Content */}
+      {/* ── Biographical Content ── */}
       <section className="section-padding bg-warm-white">
         <div className="site-container">
-          <div
-            className="grid grid-cols-1 lg:grid-cols-12 items-center"
-            style={{ gap: '32px' }}
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-8 lg:gap-10">
+
             {/* Photo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -59,11 +81,11 @@ export default function FounderStory() {
               className="lg:col-span-5 relative flex justify-center"
             >
               <div className="relative w-full max-w-sm lg:max-w-full">
-                <div className="rounded-2xl overflow-hidden shadow-2xl border border-border bg-white" style={{ aspectRatio: '4/5', maxHeight: '520px' }}>
+                <div className="rounded-2xl overflow-hidden shadow-2xl border border-border bg-white" style={{ aspectRatio: '4/5', maxHeight: '540px' }}>
                   <img
-                    src={posterImg}
-                    alt="Mr. Jagadeesan Sellamuthu – Founder of Kaikoduppom Trust"
-                    className="w-full h-full object-cover"
+                    src={founderImg}
+                    alt="Dr. Jagadeesan Sellamuthu – Founder of Kaikoduppom Trust"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
 
@@ -71,10 +93,10 @@ export default function FounderStory() {
                 <div className="absolute -bottom-6 -right-4 bg-gold p-5 rounded-2xl text-navy-dark shadow-xl max-w-[220px] hidden sm:block">
                   <Quote className="w-6 h-6 opacity-40 mb-2" />
                   <p className="font-playfair text-xs italic font-bold leading-relaxed">
-                    "No elder should face old age alone. That is the only purpose of my life."
+                    "Genuine service can transform lives and build a society rooted in kindness."
                   </p>
                   <p className="text-[10px] uppercase font-bold tracking-wider mt-2 text-navy-dark/70">
-                    — Jagadeesan Sellamuthu
+                    — Dr. Jagadeesan Sellamuthu
                   </p>
                 </div>
               </div>
@@ -86,7 +108,7 @@ export default function FounderStory() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-7"
+              className="lg:col-span-7 lg:pt-2"
             >
               <span className="text-xs font-bold tracking-widest text-gold-dark uppercase mb-3 block">Biography</span>
               <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-navy-dark mb-6 leading-snug">
@@ -95,58 +117,62 @@ export default function FounderStory() {
 
               <div className="space-y-4 text-text-muted text-sm sm:text-base leading-relaxed">
                 <p>
-                  Before establishing Kaikoduppom Trust, <strong className="text-navy-dark">Mr. Jagadeesan Sellamuthu</strong> led
-                  a simple life. However, he was constantly troubled by the sight of fragile senior citizens sitting on street corners,
-                  begging for food, and sleeping under leaky plastic sheets.
+                  Born into an agricultural family in Salem district, <strong className="text-navy-dark">Dr. Jagadeesan Sellamuthu</strong> developed
+                  a deep interest in public service at the age of 19. His journey started with blood donation drives and gradually expanded
+                  to eye donation awareness, organ donation initiatives, and support for people facing poverty and hardship. He also actively
+                  participated in social service campaigns and awareness programs, contributing both his time and personal resources to help
+                  those in need.
                 </p>
                 <p>
-                  The turning point came in 2015 when he encountered an elderly gentleman suffering from chronic illness, abandoned
-                  by his family at a bus terminus. Without thinking twice, Mr. Jagadeesan took the man to a clinic, paid for his
-                  treatments, and rented a safe room for him.
+                  Driven by the belief that service should be a lifelong commitment rather than an occasional act, he dedicated himself fully
+                  to humanitarian work. He worked alongside charitable organizations, supporting abandoned elders, persons with disabilities,
+                  underprivileged students, and vulnerable communities.
                 </p>
                 <p>
-                  This single act of mercy blossomed into a larger calling. Mr. Jagadeesan realized that medical treatment was only
-                  half the solution — these seniors needed a home, family affection, and above all, dignity.
+                  In 2013, he founded <strong className="text-navy-dark">Kaikoduppom Charitable Trust</strong> with a vision of creating a safe
+                  and caring environment for those who had been neglected or left without support. Since then, the trust has continued to
+                  provide shelter, food, medical care, and compassionate assistance to abandoned and destitute elderly people, as well as
+                  support for visually and physically challenged individuals.
                 </p>
                 <p>
-                  Using his personal savings and calling upon friends for aid, he rented a small tenement to house a few residents.
-                  The challenges were immense: food inflation, medicine shortages, and social indifference. Yet, his commitment never wavered.
+                  Despite many challenges along the way, Dr. Jagadeesan Sellamuthu has remained steadfast in his mission, guided by integrity,
+                  discipline, and the belief that genuine service can transform lives. His journey reflects a simple but powerful principle:
+                  to help every suffering person to the best of one's ability and to build a society rooted in kindness and humanity.
                 </p>
                 <p>
-                  Today, under his selfless leadership, Kaikoduppom Old Age Home has grown into a government-registered and highly
-                  respected charitable trust housing dozens of elders, providing them round-the-clock comfort and security.
+                  Today, his vision continues to inspire volunteers, donors, and well-wishers to join hands in creating a future where every
+                  individual is treated with respect, care, and compassion.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
                   to="/contact"
-                  id="founder-contact-link"
                   className="group inline-flex items-center gap-2 bg-navy hover:bg-navy-dark text-white px-6 py-3 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5"
                 >
                   Support the Mission
                 </Link>
                 <Link
                   to="/volunteer"
-                  id="founder-volunteer-link"
                   className="inline-flex items-center gap-2 border-2 border-navy/20 hover:border-navy text-navy px-6 py-3 rounded-full text-sm font-semibold transition-all"
                 >
                   Join as a Volunteer
                 </Link>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Milestones Timeline */}
+      {/* ── Milestones Timeline ── */}
       <section className="section-padding bg-cream">
         <div className="site-container">
           <div className="max-w-4xl mx-auto">
             <SectionHeading
-              eyebrow="Chronology"
-              title="Founder's Key Milestones"
-              subtitle="The chronological achievements and growth of the trust under Mr. Jagadeesan Sellamuthu's leadership."
+              eyebrow="Our Journey"
+              title="Milestones of Compassion"
+              subtitle="From a single act of kindness to a trusted home of care — the story of how Kaikoduppom grew into what it is today."
             />
             <Timeline events={founderMilestones} />
           </div>

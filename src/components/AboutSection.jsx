@@ -1,9 +1,9 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import logoImg from '../assets/images.png'
+import bannerImg from '../assets/banner.jpg'
 
 export default function AboutSection() {
   return (
@@ -15,25 +15,27 @@ export default function AboutSection() {
           subtitle="Founded with compassion and run with dedication, Kaikoduppom Trust stands as a beacon of hope for abandoned elders."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-16 xl:gap-20 mt-16">
-          {/* Left - Image Column */}
+        {/* Increased mt from mt-16 to mt-20/24 for breathing room below heading */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-14 lg:gap-18 xl:gap-24 mt-20 lg:mt-24">
+
+          {/* Left - Image / Logo Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative flex justify-center"
-          >
-            <div className="relative w-full max-w-[480px] mx-auto">
-              <div className="rounded-[28px] overflow-hidden shadow-xl border border-border bg-white w-full aspect-square flex items-center justify-center p-8 sm:p-10">
-                <img
-                  src={logoImg}
-                  alt="Kaikoduppom Trust - caring for elders"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </div>
-          </motion.div>
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+  className="relative flex justify-center"
+>
+  <div className="relative w-full max-w-[500px] mx-auto">
+    <div className="rounded-[32px] overflow-hidden shadow-2xl border border-border bg-white p-3">
+      <img
+        src={bannerImg}
+        alt="Kaikoduppom Trust"
+        className="w-full h-auto rounded-[24px] object-cover"
+      />
+    </div>
+  </div>
+</motion.div>
 
           {/* Right - Text Column */}
           <motion.div
@@ -41,39 +43,51 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-[620px] mx-auto lg:mx-0"
+            className="max-w-[640px] mx-auto lg:mx-0 lg:py-4"
           >
-            <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-navy-dark mb-5 leading-snug">
+            {/* Heading: bumped to text-3xl/4xl, tightened leading for visual weight */}
+            <h3 className="font-playfair text-3xl sm:text-4xl font-bold text-navy-dark mb-8 leading-tight tracking-tight">
               The Name Means{' '}
               <span className="text-gold italic">"Let Us Hold Hands"</span>
             </h3>
 
-            <div className="space-y-4 text-text-muted text-sm sm:text-base leading-[1.85] mb-6">
+            {/* Paragraphs: increased gap, slightly larger line-height */}
+            <div className="space-y-6 text-text-muted text-sm sm:text-[0.9375rem] leading-[2] mb-10">
               <p>
-                <strong className="text-navy-dark">Kaikoduppom Old Age Home &amp; Charitable Trust</strong> was
-                founded by <strong className="text-navy-dark">Mr. Jagadeesan Sellamuthu</strong> â€” one individual
-                guided by hope, compassion, and a deep concern for the suffering of the poor and abandoned elderly.
+                <strong className="text-navy-dark">
+                  Kaikoduppom Old Age Home & Charitable Trust
+                </strong>{' '}
+                was founded by{' '}
+                <strong className="text-navy-dark">
+                  Lion Dr. Jagadeesan Sellamuthu, Founder & Managing Trustee
+                </strong>,
+                whose vision is rooted in compassion, service, and humanity.
               </p>
+
               <p>
-                What started as a humble effort soon became a shelter of love, care, and genuine humanity.
-                The trust is <strong className="text-navy-dark">officially registered</strong> and recognized
-                by both the State and Central Government of India.
+                What began as a heartfelt effort to help a neglected elder in need soon
+                grew into a lifelong mission to care for poor, abandoned, and destitute
+                senior citizens. Guided by kindness and a deep sense of responsibility,
+                he established a place where every elder is treated with love, respect,
+                and dignity.
               </p>
+
               <p>
-                Today it provides residential care, nutritious food, medical support, hospice services,
-                and community outreach to destitute elders across Puducherry.
+                The trust is officially registered and recognized by both the State and
+                Central Government of India, reflecting its commitment to transparent and
+                dedicated service.
+              </p>
+
+              <p>
+                Today, the trust offers a safe and loving home for abandoned and
+                destitute elders by providing free accommodation, nutritious food,
+                medical care, daily essentials, and compassionate support—restoring
+                dignity, hope, and happiness to every life it touches.
               </p>
             </div>
 
-            {/* Quote */}
-            <div className="bg-gradient-to-r from-cream to-cream-dark border-l-4 border-gold rounded-r-xl p-5 sm:p-6 mb-8">
-              <p className="text-navy-dark italic font-medium text-sm leading-[1.75]">
-                "What started as a humble effort by one man became a shelter of love, care, and dignity â€”
-                a true reflection of humanity at its best."
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
+            {/* CTA Buttons: mt-10 → mt-12 for more breathing room above */}
+            <div className="flex flex-wrap gap-3 mt-12">
               <Link
                 to="/about"
                 id="about-read-more"

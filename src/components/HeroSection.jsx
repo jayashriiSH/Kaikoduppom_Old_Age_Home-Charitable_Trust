@@ -17,12 +17,6 @@ const PARTICLES = [
   { w: 4, h: 4, l: 92, t: 15, dur: 13, delay: 4 },
 ]
 
-const heroImages = [
-  { src: photo4, alt: 'Our residents',  className: 'col-span-7 row-span-4 col-start-6 row-start-1' },
-  { src: photo5, alt: 'Elder care',     className: 'col-span-6 row-span-4 col-start-1 row-start-4' },
-  { src: photo6, alt: 'Community care', className: 'col-span-5 row-span-3 col-start-8 row-start-6' },
-]
-
 function FloatingParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -47,7 +41,7 @@ function FloatingParticles() {
 export default function HeroSection() {
   return (
     <section className="relative bg-navy-dark overflow-hidden flex items-center min-h-[620px] sm:min-h-[660px] pt-20 pb-32 md:pt-24 md:pb-40 lg:min-h-[820px] lg:pt-20 lg:pb-[170px]">
-      {/* Background pattern */}
+      {/* Background dot pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
@@ -67,7 +61,7 @@ export default function HeroSection() {
       <div className="relative z-10 site-container w-full">
         <div className="grid lg:grid-cols-[minmax(0,1.02fr)_minmax(440px,0.98fr)] gap-12 xl:gap-20 items-center">
 
-          {/* Text Content */}
+          {/* ── Text Content ── */}
           <div className="max-w-[640px] lg:pr-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -79,12 +73,12 @@ export default function HeroSection() {
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
-                className="mb-6"
+                className="mb-8"
               >
                 <img
                   src={logo}
                   alt="Kaikoduppom Trust"
-                  className="h-16 w-16 rounded-full border-2 border-gold/60 shadow-2xl shadow-gold/20 object-cover"
+                  className="h-20 w-22 rounded-full border-2 border-gold/60 shadow-2xl shadow-gold/20 object-cover"
                 />
               </motion.div>
 
@@ -93,11 +87,12 @@ export default function HeroSection() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="flex flex-wrap items-center gap-2 mb-5"
+                className="flex flex-wrap items-center gap-4 mb-10"
               >
                 <div className="h-px w-8 bg-gold" />
-                <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-                  Registered Charitable Trust · Puducherry
+                <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase leading-relaxed">
+                  Kaikoduppom Charitable Trust (Regd.,)<br />
+                  Old age home for abandoned and destitute
                 </span>
               </motion.div>
 
@@ -106,8 +101,9 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="font-playfair text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] mb-6"
+                className="font-playfair text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] mb-8"
               >
+                
                 No Elder Should{' '}
                 <br />
                 <span className="italic">
@@ -121,10 +117,9 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.7 }}
-                className="text-white/60 text-base sm:text-lg leading-relaxed max-w-[560px] mb-8"
+                className="text-white/60 text-base sm:text-lg leading-relaxed max-w-[560px] mb-10"
               >
-                A government-recognized charitable trust providing shelter, dignity, medical care,
-                and unconditional love to abandoned and destitute elders.
+                As a State and Central Government recognised charitable trust, we strive to restore dignity, hope, and a sense of belonging by caring for every resident with love, respect, and dedication.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -156,7 +151,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
-                className="flex flex-wrap gap-3 mt-10"
+                className="flex flex-wrap gap-3 mt-12"
               >
                 {[
                   { text: 'Govt. Registered',    color: 'bg-green-500/15 text-green-400 border-green-500/20' },
@@ -174,38 +169,67 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Image Collage */}
+          {/* ── Image Collage (absolute-positioned, matches screenshot) ── */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
             className="hidden lg:block"
           >
-            <div className="relative w-full max-w-[590px] mx-auto">
-              <div className="grid grid-cols-12 grid-rows-8 gap-5 xl:gap-6 aspect-[1.08/1]">
-                {heroImages.map((image) => (
-                  <motion.div
-                    key={image.alt}
-                    className={`relative rounded-2xl overflow-hidden shadow-2xl ${image.className}`}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
-                  </motion.div>
-                ))}
-              </div>
-              <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-gold/20 rounded-2xl pointer-events-none" />
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-gold/10 rounded-3xl pointer-events-none" />
+            {/*
+              Layout (mirroring the screenshot):
+              ┌─────────────────────────────────────┐
+              │          [  photo4 – large top-right ]│
+              │  [photo5 – mid-left]                  │
+              │               [ photo6 – sm bot-right]│
+              └─────────────────────────────────────┘
+            */}
+            <div className="relative w-full max-w-[560px] mx-auto" style={{ height: '520px' }}>
+
+              {/* Decorative corner borders */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-gold/20 rounded-2xl pointer-events-none z-0" />
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-gold/10 rounded-3xl pointer-events-none z-0" />
+
+              {/* Ambient pulse */}
               <motion.div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gold/10 z-0 pointer-events-none"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
+
+              {/* photo4 — large, top-right */}
+              <motion.div
+                className="absolute rounded-2xl overflow-hidden shadow-2xl"
+                style={{ top: '0%', right: '0%', width: '62%', height: '52%' }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img src={photo4} alt="Our residents" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
+              </motion.div>
+
+              {/* photo5 — medium, centre-left, overlaps downward */}
+              <motion.div
+                className="absolute rounded-2xl overflow-hidden shadow-2xl"
+                style={{ top: '34%', left: '0%', width: '55%', height: '48%' }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img src={photo5} alt="Elder care" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
+              </motion.div>
+
+              {/* photo6 — small, bottom-right */}
+              <motion.div
+                className="absolute rounded-2xl overflow-hidden shadow-2xl"
+                style={{ bottom: '0%', right: '0%', width: '40%', height: '36%' }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img src={photo6} alt="Community care" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
+              </motion.div>
+
             </div>
           </motion.div>
 

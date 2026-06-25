@@ -12,23 +12,23 @@ import { motion } from 'framer-motion'
 const trustCards = [
   {
     icon: ShieldCheck,
-    title: 'Govt. Recognized NGO',
-    desc: 'Fully registered with State and Central governments, operating under strict compliance and transparency.'
-  },
-  {
-    icon: CheckCircle2,
-    title: '100% Direct Impact',
-    desc: 'Every form of support goes directly to food, medicine, shelter, and end-of-life care for abandoned elders.'
+    title: 'Government Recognized',
+    desc: 'Fully recognized by the State and Central Government authorities, operating with transparency, accountability, and compliance with applicable regulations.'
   },
   {
     icon: HeartHandshake,
-    title: 'Open to All',
-    desc: 'We accept abandoned and destitute elders free of charge, regardless of caste, religion, or background.'
+    title: 'Every Contribution Matters',
+    desc: 'Every act of kindness directly supports abandoned and destitute elders by providing nutritious meals, safe shelter, medical care, and essential daily needs.'
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Compassionate Admissions',
+    desc: 'We provide free care and shelter for abandoned and destitute elders, including those referred through Police Station Memos and authorized channels. Every elder is welcomed with dignity, respect, and compassion.'
   },
   {
     icon: Award,
-    title: '5-Star Trusted Care',
-    desc: 'Consistently rated 5.0 on Google with over 521+ reviews from volunteers, families, and visitors.'
+    title: 'Trusted Care',
+    desc: 'Committed to delivering compassionate, high-quality care in a safe and supportive environment, earning the trust of residents, families, volunteers, and well-wishers.'
   }
 ]
 
@@ -57,7 +57,7 @@ export default function Home() {
                 whileHover={{ y: -3, transition: { duration: 0.3 } }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col items-center text-center h-full min-h-[250px]"
+               className="bg-white p-6 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col items-center text-center h-full min-h-[320px]"
               >
                 <div className="w-12 h-12 rounded-xl bg-cream flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                   <item.icon className="w-6 h-6 text-gold-dark" />

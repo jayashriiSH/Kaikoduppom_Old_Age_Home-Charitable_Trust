@@ -57,7 +57,7 @@ export default function SupportMission() {
             className="text-navy-dark/75 text-base sm:text-lg section-description"
           >
             Your encouragement, volunteering, and spreading awareness help us continue serving abandoned elders with dignity,
-            compassion, and reliable care across Puducherry.
+            compassion, and reliable care .
           </motion.p>
 
           <motion.div

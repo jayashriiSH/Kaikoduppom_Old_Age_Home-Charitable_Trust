@@ -2,12 +2,36 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const timelineEvents = [
-  { year: 'Foundation', title: 'A Vision is Born',        description: 'Mr. Jagadeesan Sellamuthu, driven by compassion after witnessing elder abandonment, establishes the trust.' },
-  { year: 'Growth',     title: 'Building a Home',          description: 'The trust acquires a permanent facility in Puducherry to house and care for abandoned elders.' },
-  { year: 'Recognition',title: 'Government Registration',  description: 'Kaikoduppom Trust receives official recognition from both State and Central Government of India.' },
-  { year: 'Expansion',  title: 'Services Grow',            description: 'Introduction of hospice care, cancer hospice, and bedridden care services for the most vulnerable.' },
-  { year: 'Impact',     title: 'Community Outreach',       description: 'Launch of community food drives and volunteer programs reaching elders beyond the home.' },
-  { year: 'Present',    title: '5-Star Legacy',            description: 'With 521+ reviews and a perfect 5.0 rating, the trust continues to serve with excellence and love.' },
+  {
+    year: 'The Beginning',
+    title: 'A Vision is Born',
+    description: 'Founded through the vision and compassion of Founder Dr. Jagadeesan Sellamuthu, Kaikoduppom was born from a simple belief that every elderly person deserves care, dignity, and a place to call home.',
+  },
+  {
+    year: 'A Humble Start',
+    title: 'Building from the Heart',
+    description: 'With his own personal savings, the founder began by providing shelter, food, and daily care to abandoned elders, laying the foundation for a mission driven by kindness and selfless service.',
+  },
+  {
+    year: 'Growing with Purpose',
+    title: 'Expanding the Mission',
+    description: 'As the need grew, the trust expanded its services and strengthened its commitment to supporting destitute and abandoned senior citizens with compassion and respect.',
+  },
+  {
+    year: 'Serving Through Challenges',
+    title: 'Unwavering Commitment',
+    description: 'Through every challenge, the focus remained unchanged — ensuring uninterrupted care, safety, and support for every resident, no matter the circumstances.',
+  },
+  {
+    year: 'Expanding Care',
+    title: 'Deeper, Dedicated Care',
+    description: 'The home introduced enhanced medical assistance and dedicated care for bedridden residents, providing comfort and dignity to those with greater needs.',
+  },
+  {
+    year: 'Today',
+    title: 'A Family That Endures',
+    description: 'Kaikoduppom remains committed to offering shelter, nutritious meals, medical support, and loving care to abandoned and destitute elders — creating a family where they can live with dignity and hope.',
+  },
 ]
 
 export default function Timeline({ events = timelineEvents }) {
@@ -47,11 +71,9 @@ export default function Timeline({ events = timelineEvents }) {
 
               {/* Desktop layout — alternate left/right */}
               <div className="hidden md:grid md:grid-cols-2 w-full gap-x-20">
-                {/* Left slot */}
                 <div className={`flex justify-end ${isEven ? '' : 'invisible'}`}>
                   {isEven && <TimelineCard event={event} align="right" />}
                 </div>
-                {/* Right slot */}
                 <div className={`flex justify-start ${isEven ? 'invisible' : ''}`}>
                   {!isEven && <TimelineCard event={event} align="left" />}
                 </div>
@@ -60,6 +82,29 @@ export default function Timeline({ events = timelineEvents }) {
           )
         })}
       </div>
+
+      {/* Footer quote card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: timelineEvents.length * 0.12 + 0.2, duration: 0.6 }}
+        className="mt-14 border border-gold/30 bg-white rounded-2xl p-8 sm:p-10 text-center shadow-sm"
+      >
+        <p className="font-playfair text-lg sm:text-xl font-bold text-navy-dark leading-snug mb-3">
+          What began with one act of kindness continues as a movement of care,
+          dignity, and hope for those who need it most.
+        </p>
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <div className="h-px w-10 bg-gold/50" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 text-gold">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <div className="h-px w-10 bg-gold/50" />
+        </div>
+        <p className="text-gold-dark text-xs font-bold tracking-[0.18em] uppercase mt-3">
+          Together, We Can Continue This Journey.
+        </p>
+      </motion.div>
     </div>
   )
 }
@@ -71,7 +116,9 @@ function TimelineCard({ event, align = 'left' }) {
         align === 'right' ? 'text-right' : 'text-left'
       }`}
     >
-      <span className="inline-block text-xs font-bold tracking-widest uppercase text-gold mb-2 bg-gold/10 px-3 py-1 rounded-full">
+      <span className={`inline-block text-xs font-bold tracking-widest uppercase text-gold mb-2 bg-gold/10 px-3 py-1 rounded-full ${
+        align === 'right' ? 'self-end' : 'self-start'
+      }`}>
         {event.year}
       </span>
       <h4 className="font-playfair text-lg font-bold text-navy-dark mb-1.5 leading-snug">

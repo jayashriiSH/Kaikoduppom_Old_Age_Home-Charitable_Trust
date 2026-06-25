@@ -1,28 +1,38 @@
 import PageTransition from '../components/PageTransition'
 import SectionHeading from '../components/SectionHeading'
 import { motion } from 'framer-motion'
-import { Heart, Clock, Phone, Users, Activity, Palette, CheckCircle2 } from 'lucide-react'
+import { Heart, Clock, Phone, Palette, CheckCircle2, Utensils, Stethoscope, HandHeart } from 'lucide-react'
 
 const roles = [
   {
-    icon: Users,
-    title: 'Elder Companionship',
-    desc: 'Spend quality hours conversing, listening to stories, playing light board games, and walking with residents who feel lonely.'
+    icon: Heart,
+    title: 'Reduce Loneliness',
+    desc: 'Spend meaningful time with abandoned and destitute elders by talking, listening to their stories, and offering companionship. Even a simple conversation can bring comfort and joy.'
   },
   {
-    icon: Activity,
-    title: 'Medical &amp; Therapy Care',
-    desc: 'Doctors, nursing graduates, pharmacists, or physiotherapists helping administer healthcare and mobility therapy to bedridden elders.'
+    icon: HandHeart,
+    title: 'Support Our Care Team',
+    desc: 'Assist our dedicated staff with daily activities such as meal service, organizing supplies, administrative tasks, and maintaining a clean and welcoming environment.'
+  },
+  {
+    icon: Clock,
+    title: 'Flexible Volunteering',
+    desc: 'Whether you can spare a few hours or volunteer regularly, your time and support make a real difference. Visits can be scheduled in advance at your convenience.'
   },
   {
     icon: Palette,
-    title: 'Recreation &amp; Music',
-    desc: 'Organize festival songs, devotional bhajan sessions, art workshops, or help coordinate birthdays and festival celebration events.'
+    title: 'Share Your Skills',
+    desc: 'Lead music sessions, cultural activities, art programs, celebrations, or wellness initiatives that enrich the lives of our residents and create happy memories.'
   },
   {
-    icon: Heart,
-    title: 'Daily Help &amp; Kitchen Care',
-    desc: 'Assist in kitchen operations, clean vegetables, help distribute food packages, and organize clothes and bedding wardrobes.'
+    icon: Stethoscope,
+    title: 'Medical & Therapy Support',
+    desc: 'Doctors, nurses, pharmacists, physiotherapists, and healthcare professionals can volunteer their expertise to provide medical care, rehabilitation, and health guidance.'
+  },
+  {
+    icon: Utensils,
+    title: 'Kitchen & Daily Care',
+    desc: 'Help prepare and serve meals, organize essential supplies, distribute clothing, and support the daily needs of our elderly residents.'
   }
 ]
 
@@ -75,7 +85,7 @@ export default function Volunteer() {
             subtitle="Choose a channel that matches your schedule and skillset. Every effort counts."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             {roles.map((r, i) => (
               <motion.div
                 key={i}
@@ -89,10 +99,7 @@ export default function Volunteer() {
                   <r.icon className="w-6 h-6 text-gold-dark" />
                 </div>
                 <h3 className="font-bold text-navy-dark text-base mb-2 font-playfair">{r.title}</h3>
-                <p
-                  className="text-text-muted text-sm leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: r.desc }}
-                />
+                <p className="text-text-muted text-sm leading-relaxed">{r.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -102,7 +109,7 @@ export default function Volunteer() {
       {/* Why Volunteer + Volunteer With Us CTA */}
       <section className="section-padding bg-cream">
         <div className="site-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
             {/* Left — Why Volunteer */}
             <div>
@@ -135,43 +142,70 @@ export default function Volunteer() {
                 </p>
               </div>
             </div>
+{/* Right — Volunteer With Us CTA */}
+<div className="bg-white border border-border p-8 sm:p-10 rounded-2xl shadow-sm flex flex-col items-center text-center">
+  <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mb-6">
+    <Heart className="w-8 h-8 text-gold-dark" />
+  </div>
 
-            {/* Right — Volunteer With Us CTA */}
-            <div className="bg-white border border-border p-8 sm:p-10 rounded-2xl shadow-sm flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mb-6">
-                <Heart className="w-8 h-8 text-gold-dark" />
-              </div>
+  <h3 className="font-playfair text-2xl font-bold text-navy-dark mb-4 leading-snug">
+    Volunteer With Us
+  </h3>
 
-              <h3 className="font-playfair text-2xl font-bold text-navy-dark mb-4 leading-snug">
-                Volunteer With Us
-              </h3>
-              <p className="text-text-muted text-sm leading-relaxed max-w-sm mb-8">
-                If you would like to support our mission, please contact us directly using the
-                phone number or email provided below.
-              </p>
+  <p className="text-text-muted text-sm leading-relaxed max-w-sm mb-8">
+    Become a part of our mission to serve abandoned and destitute elders with
+    compassion and dignity. Every act of kindness—whether big or small—helps
+    create a safer, happier, and more caring home for those who need it most.
+  </p>
 
-              <a
-                id="volunteer-call-btn"
-                href="tel:09444441140"
-                className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-dark text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/25 w-full sm:w-auto"
-              >
-                <Phone className="w-4 h-4" />
-                Call Us: 094444 41140
-              </a>
+  {/* Phone Numbers */}
+  <div className="w-full space-y-3 mb-6">
+    <a
+      href="tel:+919444441140"
+      className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-dark text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/25 w-full"
+    >
+      <Phone className="w-4 h-4" />
+      +91 94444 41140
+    </a>
 
-              <p className="text-xs text-text-muted mt-4">
-                or email us at{' '}
-                <a
-                  href="mailto:kaikoduppomtrust@gmail.com"
-                  className="text-navy-dark font-medium hover:text-gold transition-colors"
-                >
-                  kaikoduppomtrust@gmail.com
-                </a>
-              </p>
-            </div>
+    <a
+      href="tel:+919943788188"
+      className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-dark text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/25 w-full"
+    >
+      <Phone className="w-4 h-4" />
+      +91 99437 88188
+    </a>
 
-          </div>
-        </div>
+    <a
+      href="tel:04422680140"
+      className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-dark text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/25 w-full"
+    >
+      <Phone className="w-4 h-4" />
+      044-2268 0140
+    </a>
+  </div>
+
+  <p className="text-xs text-text-muted">
+    or email us at{" "}
+    <a
+      href="mailto:kaikoduppomjagadeesan@gmail.com"
+      className="text-navy-dark font-medium hover:text-gold transition-colors"
+    >
+      kaikoduppomjagadeesan@gmail.com
+    </a>
+  </p>
+
+  <div className="mt-6 pt-6 border-t border-border w-full flex items-start gap-3">
+    <Clock className="w-4 h-4 text-gold-dark flex-shrink-0 mt-0.5" />
+    <p className="text-xs text-text-muted leading-relaxed text-left">
+      <strong className="text-navy-dark">
+        Volunteer Visiting Hours:
+      </strong>{" "}
+      9:00 AM – 12:00 PM and 4:00 PM – 6:30 PM (or by prior appointment).
+    </p>
+  </div>
+</div>
+</div> </div>
       </section>
     </PageTransition>
   )

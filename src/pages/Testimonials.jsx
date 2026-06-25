@@ -38,7 +38,13 @@ const staticReviews = [
   {
     name: 'Meenakshi Sundaram',
     date: '8 months ago',
-    text: 'We sponsored a full day of meals for my daughter\'s birthday. The team sent photos of the elders eating. It was transparent, emotional, and satisfying.',
+    text: "We sponsored a full day of meals for my daughter's birthday. The team sent photos of the elders eating. It was transparent, emotional, and satisfying.",
+    rating: 5
+  },
+  {
+    name: 'Vaishnavi Venkatesan',
+    date: '10 months ago',
+    text: "I'm so glad to share that I visited there twice and today I celebrated Baby shower. The service and the care takers are very kind and gentle. The people from the home is very patience. It's my lifetime memorable moment. Thank you very much for the day and the service you are being provided to the needy.",
     rating: 5
   }
 ]
@@ -82,7 +88,7 @@ export default function Testimonials() {
             subtitle="We are grateful for all kind words. They motivate our team to serve better every day."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             {staticReviews.map((r, i) => (
               <motion.div
                 key={i}
@@ -90,29 +96,50 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.07 }}
-                className="p-6 bg-white border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                className="relative bg-white border border-border rounded-2xl shadow-sm hover:shadow-lg transition-shadow flex flex-col p-7 overflow-hidden"
               >
+                {/* Opening quote mark */}
+                <div
+                  className="absolute top-4 left-5 font-playfair text-gold/20 select-none pointer-events-none"
+                  style={{ fontSize: '80px', lineHeight: 1 }}
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </div>
+
+                {/* Avatar + Name row */}
+                <div className="flex items-center gap-3 mb-5 relative z-10">
+                  <div className="w-11 h-11 rounded-full bg-navy-dark text-gold font-bold text-base flex items-center justify-center flex-shrink-0 border-2 border-gold/30">
+                    {r.name[0]}
+                  </div>
+                  <div>
+                    <p className="font-bold text-navy-dark text-sm leading-tight">{r.name}</p>
+                    <p className="text-xs text-text-muted mt-0.5">{r.date}</p>
+                  </div>
+                </div>
+
+                {/* Review text */}
+                <p className="text-text-primary text-sm leading-relaxed flex-1 relative z-10">
+                  {r.text}
+                </p>
+
+                {/* Divider */}
+                <div className="w-12 h-px bg-gold/40 my-5" />
+
                 {/* Stars */}
-                <div className="flex gap-1 mb-3">
+                <div className="flex gap-1 relative z-10">
                   {Array.from({ length: r.rating }).map((_, idx) => (
                     <Star key={idx} size={14} className="text-gold fill-gold" />
                   ))}
                 </div>
 
-                {/* Review text */}
-                <p className="text-text-primary text-sm leading-relaxed mb-4 italic flex-1">
-                  "{r.text}"
-                </p>
-
-                {/* Reviewer */}
-                <div className="flex items-center gap-3 pt-4 border-t border-border/60">
-                  <div className="w-9 h-9 rounded-full bg-cream text-gold-dark font-bold text-sm flex items-center justify-center flex-shrink-0">
-                    {r.name[0]}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-bold text-navy-dark text-sm leading-tight">{r.name}</p>
-                    <p className="text-xs text-text-muted">{r.date}</p>
-                  </div>
+                {/* Closing quote mark */}
+                <div
+                  className="absolute bottom-4 right-5 font-playfair text-gold/20 select-none pointer-events-none"
+                  style={{ fontSize: '80px', lineHeight: 1 }}
+                  aria-hidden="true"
+                >
+                  &rdquo;
                 </div>
               </motion.div>
             ))}

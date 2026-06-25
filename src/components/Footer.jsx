@@ -36,12 +36,12 @@ export default function Footer() {
               />
               <div className="min-w-0">
                 <p className="font-semibold text-base leading-tight">Kaikoduppom</p>
-                <p className="text-text-light text-xs">Old Age Home &amp; Trust</p>
+                <p className="text-text-light text-xs">Old Age Home &amp; Charitable  Trust</p>
               </div>
             </Link>
             <p className="text-text-light text-sm leading-relaxed mb-5">
               A government-recognized shelter of love, care, and dignity for abandoned
-              and destitute elders in Puducherry, India.
+              and destitute elders.
             </p>
             <div className="flex flex-wrap gap-2">
               {['Facebook', 'Instagram', 'YouTube'].map((name) => (
@@ -123,7 +123,7 @@ export default function Footer() {
                     href="mailto:kaikoduppomtrust@gmail.com"
                     className="text-white font-medium text-sm hover:text-gold transition-colors break-all"
                   >
-                    kaikoduppomtrust@gmail.com
+                    kaikoduppomjagadeesan@gmail.com
                   </a>
                 </div>
               </li>
@@ -131,7 +131,7 @@ export default function Footer() {
                 <MapPin size={15} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
                   <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">Location</p>
-                  <p className="text-white text-sm">Puducherry, India</p>
+                  <p className="text-white text-sm">Chennai , Tamil Nadu , India</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
