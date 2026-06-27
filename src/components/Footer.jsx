@@ -18,12 +18,12 @@ const supportLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-dark text-white relative overflow-hidden">
+    <footer className="bg-navy-dark text-white relative overflow-hidden ">
       {/* Decorative top gradient line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-gold-light to-gold" />
 
       {/* Main Footer Grid */}
-      <div className="site-container pt-20 pb-12">
+      <div className="site-container pt-20 pb-12 footer-bottom">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.8fr_0.8fr_1.15fr] gap-10 lg:gap-14 items-start">
 
           {/* Column 1 — Brand */}

@@ -32,6 +32,7 @@ export default function About() {
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             A Shelter of Love &amp; Dignity
           </h1>
+          <br/>
           <p className="text-white/60 text-sm sm:text-base section-description">
             A registered charitable trust committed to providing compassionate care, dignity, and support for abandoned and destitute elders.
           </p>

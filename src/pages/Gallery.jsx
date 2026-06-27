@@ -1,42 +1,88 @@
 import { useState } from 'react'
 import PageTransition from '../components/PageTransition'
-import SectionHeading from '../components/SectionHeading'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight, Eye } from 'lucide-react'
 
-// Image imports
+// Existing imports
 import photo2 from '../assets/photo2.jpg'
-import photo3 from '../assets/photo3.png'
+import photo3 from '../assets/photo3.jpg'
 import photo4 from '../assets/photo4.png'
 import photo5 from '../assets/photo5.png'
-import photo6 from '../assets/photo6.png'
 import photo7 from '../assets/photo7.png'
 import photo8 from '../assets/photo8.png'
 import photo9 from '../assets/photo9.png'
-import posterImg from '../assets/poster.png'
 import hero1 from '../assets/hero1.avif'
 
+// New imports
+import banner from '../assets/banner.jpg'
+import certOfReg from '../assets/cert_of_reg.jpg'
+import certOfReg2 from '../assets/cert_of_reg2.jpg'
+import certOfReg3 from '../assets/cert_of_reg3.jpg'
+import doc1 from '../assets/doc1.jpg'
+import doc2 from '../assets/doc2.jpg'
+import doc3 from '../assets/doc3.jpg'
+import doc4 from '../assets/doc4.jpg'
+import doc5 from '../assets/doc5.jpg'
+import doc6 from '../assets/doc6.jpg'
+import doc7 from '../assets/doc7.jpg'
+import formd from '../assets/formd.jpg'
+import founder from '../assets/founder.jpg'
+import heroPng from '../assets/hero.png'
+import photo10 from '../assets/photo10.jpg'
+import qr1 from '../assets/QR-1.jpg'
+import qr2 from '../assets/QR-2.jpg'
+import qr3 from '../assets/QR-3.jpg'
+import sponsorship from '../assets/Sponsorship_detials.jpg'
+
+// Remove hero import, remove photo6 import, keep all others
+// DELETE this line: import heroPng from '../assets/hero.png'
+
 const galleryItems = [
-  { src: photo4, category: 'residents', title: 'Resident Care', desc: 'Daily smiles and companionship at Kaikoduppom' },
-  { src: photo2, category: 'residents', title: 'Happy Moments', desc: 'Showering elders with the warmth they deserve' },
-  { src: photo9, category: 'residents', title: 'Recreation Time', desc: 'Engaging in reading and quiet hobbies' },
-  { src: photo5, category: 'activities', title: 'Daily Support', desc: 'Dedicated assistants tending to physical mobility' },
-  { src: photo7, category: 'activities', title: 'Physiotherapy Unit', desc: 'Helping elders maintain movement and health' },
-  { src: photo8, category: 'activities', title: 'Indoor Board Games', desc: 'Stimulating activities to keep minds active' },
-  { src: photo6, category: 'festivals', title: 'Festival Celebration', desc: 'Celebrating Pongal with traditional meals and prayers' },
-  { src: hero1, category: 'festivals', title: 'Community Feasts', desc: 'Sharing joy and light during deepavali' },
-  { src: photo3, category: 'outreach', title: 'Outreach Donation', desc: 'Food distribution drives to needy elders in town' },
-  { src: posterImg, category: 'outreach', title: 'Mission Awareness', desc: 'Public campaign poster detailing care options' }
+  // Residents
+  { src: photo2, category: 'residents', title: 'Group Photo with Visitors', desc: 'Elders and staff welcomed with warmth and dignity' },
+  { src: photo9, category: 'residents', title: 'Street Outreach Program', desc: 'Reaching out to elders and families in the community' },
+  { src: photo10, category: 'residents', title: 'Donor Visit & Support', desc: 'A kind donor sharing love and essentials with our elders' },
+
+  // Activities
+  { src: photo4, category: 'activities', title: 'Award Ceremony', desc: 'Kaikoduppom Trust honoured at Global Achievers Council' },
+  { src: photo5, category: 'activities', title: 'Cultural Programme', desc: 'Elders participating in a traditional stage celebration' },
+  { src: photo7, category: 'activities', title: 'Medical Camp', desc: 'Free health check-up camp organised for our residents' },
+  { src: photo8, category: 'activities', title: 'Community Outreach Event', desc: 'Trust volunteers engaged in a public welfare drive' },
+
+  // Festivals
+  { src: photo3, category: 'festivals', title: 'Our Journey Timeline', desc: 'Milestones of compassion since Kaikoduppom was founded' },
+  { src: hero1, category: 'festivals', title: 'Trust Identity & Mission', desc: 'Visual representation of our values and community purpose' },
+
+  // Outreach
+  { src: banner, category: 'outreach', title: 'Kaikoduppom Trust Banner', desc: 'Official banner recognised by State & Central Government' },
+  { src: founder, category: 'festivals', title: 'Our Founder', desc: 'The visionary behind Kaikoduppom Charitable Trust' },
+  { src: sponsorship, category: 'outreach', title: 'Bank Details – South Indian Bank', desc: 'Sponsorship and donation account details of the trust' },
+  { src: qr1, category: 'outreach', title: 'Donation QR – Yes Bank', desc: 'Scan to donate directly via Yes Bank UPI / BHIM' },
+  { src: qr2, category: 'outreach', title: 'Donation QR – Kaikoduppom Trust', desc: 'Quick payment via UPI, GPay, PhonePe & more' },
+  { src: qr3, category: 'outreach', title: 'Donation QR – South Indian Bank', desc: 'Scan to contribute via South Indian Bank UPI' },
+
+  // Documents
+  { src: certOfReg, category: 'documents', title: 'Certificate of Registration – I', desc: 'Official trust registration under the Charitable Trusts Act' },
+  { src: certOfReg2, category: 'documents', title: 'Certificate of Registration – II', desc: 'Continuation of the trust deed registration records' },
+  { src: certOfReg3, category: 'documents', title: 'Certificate of Registration – III', desc: 'Final page of the registered trust certification' },
+  { src: doc1, category: 'documents', title: 'Government Order – Tamil Nadu', desc: 'State government recognition letter for the trust' },
+  { src: doc2, category: 'documents', title: 'Official Correspondence', desc: 'Formal document related to trust operations and approval' },
+  { src: doc3, category: 'documents', title: 'Appreciation Certificate', desc: 'Recognition awarded to Kaikoduppom Charitable Trust' },
+  { src: doc4, category: 'documents', title: 'Merit Certificate', desc: 'Certificate of merit conferred upon the trust' },
+  { src: doc5, category: 'documents', title: 'Legal Trust Document', desc: 'Key legal paperwork establishing trust operations' },
+  { src: doc6, category: 'documents', title: 'Certificate of Excellence', desc: 'Award certificate recognising outstanding service' },
+  { src: doc7, category: 'documents', title: 'Trust Brochure / Notice', desc: 'Public notice and service details of Kaikoduppom Trust' },
+  { src: formd, category: 'documents', title: 'Form D – Trust Registration', desc: 'Registered Form D document under the Charitable Trusts Act' },
 ]
 
 const categories = [
-  { id: 'all', label: 'All Photos' },
-  { id: 'residents', label: 'Our Residents' },
-  { id: 'activities', label: 'Daily Activities' },
-  { id: 'festivals', label: 'Festivals & Events' },
-  { id: 'outreach', label: 'Outreach Drives' }
+  { id: 'all', label: 'All' },
+  { id: 'residents', label: 'Residents & Visits' },
+  { id: 'activities', label: 'Events & Programmes' },
+  { id: 'festivals', label: 'Our Story' },
+  { id: 'outreach', label: 'Donate & Support' },
+  { id: 'documents', label: 'Certificates & Records' },
 ]
-
 export default function Gallery() {
   const [selectedFilter, setSelectedFilter] = useState('all')
   const [lightboxIndex, setLightboxIndex] = useState(null)
@@ -75,7 +121,7 @@ export default function Gallery() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-dark/95" />
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-warm-white to-transparent" />
-        
+
         <div className="relative z-10 site-container w-full">
           <span className="text-gold text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">Visual Journey</span>
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">Moments of Joy & Care</h1>
@@ -127,7 +173,7 @@ export default function Gallery() {
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6" >
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <span className="text-[10px] text-gold font-semibold tracking-widest uppercase mb-1">{item.category}</span>
                     <h3 className="text-white font-playfair font-bold text-lg mb-1">{item.title}</h3>
                     <p className="text-white/60 text-xs leading-relaxed">{item.desc}</p>
@@ -152,7 +198,6 @@ export default function Gallery() {
             onClick={closeLightbox}
             className="fixed inset-0 z-[100] bg-navy-dark/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
           >
-            {/* Close Button */}
             <button
               onClick={closeLightbox}
               className="absolute top-6 right-6 text-white/70 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -160,7 +205,6 @@ export default function Gallery() {
               <X size={24} />
             </button>
 
-            {/* Prev Button */}
             <button
               onClick={handlePrev}
               className="absolute left-2 sm:left-6 text-white/70 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -168,7 +212,6 @@ export default function Gallery() {
               <ChevronLeft size={24} />
             </button>
 
-            {/* Active Image Container */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -195,7 +238,6 @@ export default function Gallery() {
               </div>
             </motion.div>
 
-            {/* Next Button */}
             <button
               onClick={handleNext}
               className="absolute right-2 sm:right-6 text-white/70 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"

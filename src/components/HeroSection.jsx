@@ -81,6 +81,7 @@ export default function HeroSection() {
                   className="h-20 w-22 rounded-full border-2 border-gold/60 shadow-2xl shadow-gold/20 object-cover"
                 />
               </motion.div>
+              <br/>
 
               {/* Eyebrow */}
               <motion.div
@@ -95,6 +96,8 @@ export default function HeroSection() {
                   Old age home for abandoned and destitute
                 </span>
               </motion.div>
+              <br>
+              </br>
 
               {/* Headline */}
               <motion.h1
@@ -121,6 +124,7 @@ export default function HeroSection() {
               >
                 As a State and Central Government recognised charitable trust, we strive to restore dignity, hope, and a sense of belonging by caring for every resident with love, respect, and dedication.
               </motion.p>
+              <br/>
 
               {/* CTA Buttons */}
               <motion.div
@@ -145,6 +149,7 @@ export default function HeroSection() {
                   Learn About Us
                 </Link>
               </motion.div>
+              <br/>
 
               {/* Trust Badges */}
               <motion.div

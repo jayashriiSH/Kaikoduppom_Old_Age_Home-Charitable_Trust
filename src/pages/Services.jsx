@@ -38,7 +38,6 @@ const detailedServices = [
     features: [
       'Weekly checkups by visiting general physicians',
       'Round-the-clock administration of prescribed medicines',
-      'Tie-up with local hospitals for emergency admissions',
       'Basic physiotherapy sessions for mobility-impaired elders',
     ],
     color: 'border-green-200 bg-green-50/50',
@@ -168,19 +167,21 @@ export default function Services() {
                   {service.description}
                 </p>
 
-                <div className="pt-6 border-t border-border/60 mt-auto">
-                  <h4 className="text-[11px] font-bold uppercase tracking-widest text-navy mb-4">
-                    Included in service
-                  </h4>
-                  <ul className="space-y-3">
-                    {service.features.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs text-text-muted">
-                        <Check className="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" />
-                        <span className="leading-relaxed">{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {idx < 3 && (
+                  <div className="pt-6 border-t border-border/60 mt-auto">
+                    <h4 className="text-[11px] font-bold uppercase tracking-widest text-navy mb-4">
+                      Included in service
+                    </h4>
+                    <ul className="space-y-3">
+                      {service.features.map((feat, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-xs text-text-muted">
+                          <Check className="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" />
+                          <span className="leading-relaxed">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>

@@ -283,3 +283,8 @@ img {
   transform: translateY(-3px);
   box-shadow: 0 10px 15px -3px rgba(200, 168, 75, 0.3), 0 4px 6px -4px rgba(200, 168, 75, 0.3);
 }
+.footer-bottom
+{
+  margin-top:10px;
+  
+}
