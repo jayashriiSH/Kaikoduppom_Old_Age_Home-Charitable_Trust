@@ -33,12 +33,14 @@ import qr1 from '../assets/QR-1.jpg'
 import qr2 from '../assets/QR-2.jpg'
 import qr3 from '../assets/QR-3.jpg'
 import sponsorship from '../assets/Sponsorship_detials.jpg'
+import posterImg from '../assets/poster.png'
 
 // Remove hero import, remove photo6 import, keep all others
 // DELETE this line: import heroPng from '../assets/hero.png'
 
 const galleryItems = [
   // Residents
+  { src: posterImg, category: 'outreach', title: 'Deepavali Feast & Donation Drive', desc: 'Special Deepavali celebration poster — meals for 50 elders & 80 children, with donation details' },
   { src: photo2, category: 'residents', title: 'Group Photo with Visitors', desc: 'Elders and staff welcomed with warmth and dignity' },
   { src: photo9, category: 'residents', title: 'Street Outreach Program', desc: 'Reaching out to elders and families in the community' },
   { src: photo10, category: 'residents', title: 'Donor Visit & Support', desc: 'A kind donor sharing love and essentials with our elders' },
