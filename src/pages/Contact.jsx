@@ -151,12 +151,7 @@ export default function Contact() {
                     kaikoduppomjagadeesan@gmail.com
                   </span>
                 </a>
-                <a href="mailto:kaikoduppomtrust@yahoo.com" className="flex items-start gap-2 group">
-                  <span className="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0 mt-1.5" />
-                  <span className="text-navy-dark font-semibold text-sm font-playfair group-hover:text-gold-dark transition-colors break-all leading-snug">
-                    kaikoduppomtrust@yahoo.com
-                  </span>
-                </a>
+               
               </div>
               <p className="text-[11px] text-text-muted">Donations, admissions and general enquiries</p>
             </div>
