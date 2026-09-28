@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Phone, MapPin, ChevronRight, ArrowRight } from 'lucide-react'
@@ -48,8 +48,35 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const location = useLocation()
   const { lang, t } = useLang()
-  // Indic labels run longer, so those languages switch to the hamburger menu one breakpoint later
   const isIndic = lang !== 'en'
+
+  /* Show the full link row only when it genuinely fits. Measuring (rather than
+     guessing breakpoints) keeps it correct for every language, screen width,
+     and enlarged browser font sizes. */
+  const rowRef = useRef(null)
+  const logoRef = useRef(null)
+  const linksRef = useRef(null)
+  const controlsRef = useRef(null)
+  const [collapsed, setCollapsed] = useState(true)
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const row = rowRef.current, links = linksRef.current
+      if (!row || !links) return
+      const gapPx = parseFloat(getComputedStyle(row).columnGap) || 0
+      const available = row.clientWidth - logoRef.current.offsetWidth - controlsRef.current.offsetWidth - gapPx * 2
+      setCollapsed(links.offsetWidth > available)
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ;[rowRef, linksRef, controlsRef].forEach((r) => r.current && ro.observe(r.current))
+    document.fonts?.ready.then(measure)
+    return () => ro.disconnect()
+  }, [lang])
+
+  useEffect(() => {
+    if (!collapsed) setIsMobileOpen(false)
+  }, [collapsed])
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -100,10 +127,11 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="h-[76px] lg:h-[80px] flex items-center justify-between gap-4">
+          <div ref={rowRef} className="relative h-[76px] lg:h-[80px] flex items-center justify-between gap-4">
 
             {/* Logo */}
             <Link
+              ref={logoRef}
               to="/"
               className="flex items-center gap-3 group flex-shrink-0"
               aria-label="Kaikoduppom Old Age Home – Home"
@@ -114,16 +142,14 @@ export default function Navbar() {
                 className="h-11 w-11 lg:h-12 lg:w-12 rounded-full object-cover border-2 border-gold/50 group-hover:border-gold transition-colors"
                 whileHover={{ scale: 1.05, rotate: 5 }}
               />
-              <div className="hidden 2xl:block">
-                <p className="text-white font-semibold text-sm leading-tight">
-                  {t('nav.trustName')}
-                </p>
-                <p className="text-text-light text-xs">{t('nav.trustSub')}</p>
-              </div>
             </Link>
 
             {/* Desktop Nav Links */}
-            <div className={`hidden ${isIndic ? 'xl:flex' : 'lg:flex'} items-center justify-center gap-1 xl:gap-3 2xl:gap-6 flex-1 min-w-0`}>
+            <div
+              className={collapsed ? 'absolute left-0 top-0 w-0 h-0 overflow-hidden invisible' : 'flex flex-1 min-w-0 justify-center'}
+              aria-hidden={collapsed}
+            >
+              <div ref={linksRef} className="flex w-max items-center gap-1 xl:gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -144,24 +170,27 @@ export default function Navbar() {
                   )}
                 </Link>
               ))}
+              </div>
             </div>
 
-            {/* Language + Phone */}
+            {/* Language + Phone (+ hamburger when the links don't fit) */}
             <div className="flex items-center gap-2 flex-shrink-0">
+              <div ref={controlsRef} className="flex items-center gap-2">
               <LanguageDropdown />
               <a
                 href="tel:09444441140"
-                className={`hidden ${isIndic ? 'xl:flex' : 'lg:flex'} items-center gap-2 px-4 2xl:px-5 py-2.5 bg-gold text-navy-dark font-bold rounded-[10px] border border-black/10 shadow-sm hover:shadow-md hover:bg-gold/90 transition-all duration-300 text-sm`}
+                className={`hidden sm:flex items-center gap-2 px-4 2xl:px-5 py-2.5 bg-gold text-navy-dark font-bold rounded-[10px] border border-black/10 shadow-sm hover:shadow-md hover:bg-gold/90 transition-all duration-300 text-sm`}
                 aria-label="094444 41140"
               >
                 <Phone size={16} />
                 <span className={isIndic ? 'hidden 2xl:inline' : 'hidden xl:inline'}>094444 41140</span>
               </a>
+              </div>
 
-            {/* Mobile Hamburger */}
+            {/* Hamburger */}
             <button
               onClick={() => setIsMobileOpen(true)}
-              className={`${isIndic ? 'xl:hidden' : 'lg:hidden'} flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0`}
+              className={`${collapsed ? 'flex' : 'hidden'} items-center justify-center w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0`}
               aria-label="Open navigation menu"
               aria-expanded={isMobileOpen}
             >
@@ -184,7 +213,7 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm ${isIndic ? 'xl:hidden' : 'lg:hidden'}`}
+              className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
               onClick={() => setIsMobileOpen(false)}
               aria-hidden="true"
             />
@@ -196,7 +225,7 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className={`fixed inset-0 z-[70] ${isIndic ? 'xl:hidden' : 'lg:hidden'} flex flex-col`}
+              className="fixed inset-0 z-[70] flex flex-col"
               style={{
                 background: 'linear-gradient(160deg, #0d1b2a 0%, #112240 55%, #0a1628 100%)',
               }}
