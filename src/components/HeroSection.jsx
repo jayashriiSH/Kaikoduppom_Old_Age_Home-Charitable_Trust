@@ -5,6 +5,7 @@ import logo from '../assets/images.png'
 import photo4 from '../assets/photo4.png'
 import photo5 from '../assets/photo5.png'
 import photo6 from '../assets/photo6.png'
+import { useLang } from '../i18n/LanguageContext'
 
 const PARTICLES = [
   { w: 6, h: 4, l: 12, t: 20, dur: 18, delay: 0 },
@@ -39,8 +40,9 @@ function FloatingParticles() {
 }
 
 export default function HeroSection() {
+  const { t } = useLang()
   return (
-    <section className="relative bg-navy-dark overflow-hidden flex items-center min-h-[620px] sm:min-h-[660px] pt-20 pb-32 md:pt-24 md:pb-40 lg:min-h-[820px] lg:pt-20 lg:pb-[170px]">
+    <section className="relative bg-navy-dark overflow-hidden flex items-center min-h-[calc(100svh-106px)] lg:min-h-[calc(100svh-110px)] pt-10 pb-28 md:pb-32 lg:pt-8 lg:pb-24">
       {/* Background dot pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -73,45 +75,42 @@ export default function HeroSection() {
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
-                className="mb-8"
+                className="mb-5 lg:mb-[2.5vh]"
               >
                 <img
                   src={logo}
                   alt="Kaikoduppom Trust"
-                  className="h-20 w-22 rounded-full border-2 border-gold/60 shadow-2xl shadow-gold/20 object-cover"
+                  className="h-14 w-14 lg:h-[min(4rem,7vh)] lg:w-[min(4rem,7vh)] rounded-full border-2 border-gold/60 shadow-2xl shadow-gold/20 object-cover"
                 />
               </motion.div>
-              <br/>
 
               {/* Eyebrow */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="flex flex-wrap items-center gap-4 mb-10"
+                className="flex flex-wrap items-center gap-4 mb-6 lg:mb-[3vh]"
               >
                 <div className="h-px w-8 bg-gold" />
                 <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase leading-relaxed">
-                  Kaikoduppom Charitable Trust (Regd.,)<br />
-                  Old age home for abandoned and destitute
+                  {t('hero.eyebrow1')}<br />
+                  {t('hero.eyebrow2')}
                 </span>
               </motion.div>
-              <br>
-              </br>
 
               {/* Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="font-playfair text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] mb-8"
+                className="hero-title font-playfair text-4xl sm:text-5xl lg:text-[clamp(2.75rem,6.5vh,4.25rem)] font-bold text-white leading-[1.08] mb-5 lg:mb-[3vh]"
               >
                 
-                No Elder Should{' '}
+                {t('hero.title1')}{' '}
                 <br />
                 <span className="italic">
-                  Face Old Age{' '}
-                  <span className="gradient-text">Alone</span>
+                  {t('hero.title2')}{' '}
+                  <span className="gradient-text">{t('hero.title3')}</span>
                 </span>
               </motion.h1>
 
@@ -120,11 +119,10 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.7 }}
-                className="text-white/60 text-base sm:text-lg leading-relaxed max-w-[560px] mb-10"
+                className="hero-desc text-white/60 text-base sm:text-lg leading-relaxed max-w-[560px] mb-8 lg:mb-[4vh]"
               >
-                As a State and Central Government recognised charitable trust, we strive to restore dignity, hope, and a sense of belonging by caring for every resident with love, respect, and dedication.
+                {t('hero.desc')}
               </motion.p>
-              <br/>
 
               {/* CTA Buttons */}
               <motion.div
@@ -138,7 +136,7 @@ export default function HeroSection() {
                   id="hero-contact-cta"
                   className="group inline-flex items-center justify-center gap-2 h-[54px] bg-gold hover:bg-gold-light text-navy-dark font-bold px-8 rounded-[14px] text-sm shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-[3px]"
                 >
-                  Support Our Mission
+                  {t('hero.ctaSupport')}
                   <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
@@ -146,23 +144,22 @@ export default function HeroSection() {
                   id="hero-about-cta"
                   className="inline-flex items-center justify-center gap-2 h-[54px] border border-white/20 text-white/90 hover:text-white hover:bg-white/5 hover:border-white/40 px-8 rounded-[14px] text-sm font-medium shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-[3px]"
                 >
-                  Learn About Us
+                  {t('hero.ctaAbout')}
                 </Link>
               </motion.div>
-              <br/>
 
               {/* Trust Badges */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
-                className="flex flex-wrap gap-3 mt-12"
+                className="flex flex-wrap gap-3 mt-8 lg:mt-[4vh]"
               >
                 {[
-                  { text: 'Govt. Registered',    color: 'bg-green-500/15 text-green-400 border-green-500/20' },
-                  { text: '★ 5.0 · 521 Reviews', color: 'bg-gold/15 text-gold border-gold/20' },
-                  { text: 'Open 24 Hours',        color: 'bg-white/10 text-white/70 border-white/10' },
-                ].map((badge) => (
+                  'bg-green-500/15 text-green-400 border-green-500/20',
+                  'bg-gold/15 text-gold border-gold/20',
+                  'bg-white/10 text-white/70 border-white/10',
+                ].map((color, i) => ({ color, text: t('hero.badges')[i] })).map((badge) => (
                   <span
                     key={badge.text}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium border ${badge.color}`}
@@ -174,67 +171,32 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* ── Image Collage (absolute-positioned, matches screenshot) ── */}
+          {/* ── Image Grid: one wide photo on top, two below ── */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
             className="hidden lg:block"
           >
-            {/*
-              Layout (mirroring the screenshot):
-              ┌─────────────────────────────────────┐
-              │          [  photo4 – large top-right ]│
-              │  [photo5 – mid-left]                  │
-              │               [ photo6 – sm bot-right]│
-              └─────────────────────────────────────┘
-            */}
-            <div className="relative w-full max-w-[560px] mx-auto" style={{ height: '520px' }}>
-
-              {/* Decorative corner borders */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-gold/20 rounded-2xl pointer-events-none z-0" />
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-gold/10 rounded-3xl pointer-events-none z-0" />
-
-              {/* Ambient pulse */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gold/10 z-0 pointer-events-none"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-
-              {/* photo4 — large, top-right */}
-              <motion.div
-                className="absolute rounded-2xl overflow-hidden shadow-2xl"
-                style={{ top: '0%', right: '0%', width: '62%', height: '52%' }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img src={photo4} alt="Our residents" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
-              </motion.div>
-
-              {/* photo5 — medium, centre-left, overlaps downward */}
-              <motion.div
-                className="absolute rounded-2xl overflow-hidden shadow-2xl"
-                style={{ top: '34%', left: '0%', width: '55%', height: '48%' }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img src={photo5} alt="Elder care" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
-              </motion.div>
-
-              {/* photo6 — small, bottom-right */}
-              <motion.div
-                className="absolute rounded-2xl overflow-hidden shadow-2xl"
-                style={{ bottom: '0%', right: '0%', width: '40%', height: '36%' }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img src={photo6} alt="Community care" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
-              </motion.div>
-
+            <div
+              className="grid grid-cols-2 grid-rows-[3fr_2fr] gap-4 w-full max-w-[560px] ml-auto"
+              style={{ height: 'clamp(340px, calc(100svh - 300px), 520px)' }}
+            >
+              {[
+                { src: photo4, alt: 'Our residents', className: 'col-span-2' },
+                { src: photo5, alt: 'Elder care' },
+                { src: photo6, alt: 'Community care' },
+              ].map((img) => (
+                <motion.div
+                  key={img.alt}
+                  className={`relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 ${img.className ?? ''}`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/40 to-transparent" />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
@@ -253,7 +215,7 @@ export default function HeroSection() {
           transition={{ duration: 2, repeat: Infinity }}
           className="flex flex-col items-center gap-2 text-white/40"
         >
-          <span className="text-xs tracking-wider uppercase">Scroll</span>
+          <span className="text-xs tracking-wider uppercase">{t('hero.scroll')}</span>
           <ArrowDown size={18} />
         </motion.div>
       </motion.div>

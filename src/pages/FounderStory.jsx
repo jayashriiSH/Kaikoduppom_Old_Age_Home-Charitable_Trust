@@ -6,41 +6,11 @@ import { motion } from 'framer-motion'
 import { Quote } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import founderImg from '../assets/founder.jpg'
-
-const founderMilestones = [
-  {
-    year: '2013',
-    title: 'The Beginning',
-    description: 'Founded through the vision and compassion of Founder Dr. Jagadeesan Sellamuthu, Kaikoduppom was born from a simple belief that every elderly person deserves care, dignity, and a place to call home.',
-  },
-  {
-    year: '2014',
-    title: 'A Humble Start',
-    description: 'With his own personal savings, the founder began by providing shelter, food, and daily care to abandoned elders, laying the foundation for a mission driven by kindness and selfless service.',
-  },
-  {
-    year: '2017',
-    title: 'Growing with Purpose',
-    description: 'As the need grew, the trust expanded its services and strengthened its commitment to supporting destitute and abandoned senior citizens with compassion and respect.',
-  },
-  {
-    year: '2020',
-    title: 'Serving Through Challenges',
-    description: 'Through every challenge, the focus remained unchanged — ensuring uninterrupted care, safety, and support for every resident.',
-  },
-  {
-    year: '2022',
-    title: 'Expanding Care',
-    description: 'The home introduced enhanced medical assistance and dedicated care for bedridden residents, providing comfort and dignity to those with greater needs.',
-  },
-  {
-    year: 'Today',
-    title: 'Today',
-    description: 'Kaikoduppom remains committed to offering shelter, nutritious meals, medical support, and loving care to abandoned and destitute elders, creating a family where they can live with dignity and hope.',
-  },
-]
+import { useLang } from '../i18n/LanguageContext'
+import Rich from '../i18n/Rich'
 
 export default function FounderStory() {
+  const { t } = useLang()
   return (
     <PageTransition>
       {/* ── Banner Header ── */}
@@ -55,14 +25,12 @@ export default function FounderStory() {
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-warm-white to-transparent" />
 
         <div className="relative z-10 site-container w-full">
-          <span className="text-gold text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">
-            The Heart Behind the Trust
-          </span>
+          <span className="text-gold text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t('banner.founder.eyebrow')}</span>
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-            Founder's Journey
+            {t('banner.founder.title')}
           </h1>
           <p className="text-white/60 text-sm sm:text-base section-description">
-            Every meaningful mission begins with a purpose — and for Dr. Jagadeesan Sellamuthu, that purpose has always been to serve humanity with compassion, dignity, and selfless commitment.
+            {t('banner.founder.desc')}
           </p>
         </div>
       </div>
@@ -93,10 +61,10 @@ export default function FounderStory() {
                 <div className="absolute -bottom-6 -right-4 bg-gold p-5 rounded-2xl text-navy-dark shadow-xl max-w-[220px] hidden sm:block">
                   <Quote className="w-6 h-6 opacity-40 mb-2" />
                   <p className="font-playfair text-xs italic font-bold leading-relaxed">
-                    "Genuine service can transform lives and build a society rooted in kindness."
+                    {t('founder.quote')}
                   </p>
                   <p className="text-[10px] uppercase font-bold tracking-wider mt-2 text-navy-dark/70">
-                    — Dr. Jagadeesan Sellamuthu
+                    {t('founder.quoteBy')}
                   </p>
                 </div>
               </div>
@@ -110,39 +78,13 @@ export default function FounderStory() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:col-span-7 lg:pt-2"
             >
-              <span className="text-xs font-bold tracking-widest text-gold-dark uppercase mb-3 block">Biography</span>
+              <span className="text-xs font-bold tracking-widest text-gold-dark uppercase mb-3 block">{t('founder.bioEyebrow')}</span>
               <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-navy-dark mb-6 leading-snug">
-                From a Humble Encounter to a Beacon of Hope
+                {t('founder.bioTitle')}
               </h2>
 
               <div className="space-y-4 text-text-muted text-sm sm:text-base leading-relaxed">
-                <p>
-                  Born into an agricultural family in Salem district, <strong className="text-navy-dark">Dr. Jagadeesan Sellamuthu</strong> developed
-                  a deep interest in public service at the age of 19. His journey started with blood donation drives and gradually expanded
-                  to eye donation awareness, organ donation initiatives, and support for people facing poverty and hardship. He also actively
-                  participated in social service campaigns and awareness programs, contributing both his time and personal resources to help
-                  those in need.
-                </p>
-                <p>
-                  Driven by the belief that service should be a lifelong commitment rather than an occasional act, he dedicated himself fully
-                  to humanitarian work. He worked alongside charitable organizations, supporting abandoned elders, persons with disabilities,
-                  underprivileged students, and vulnerable communities.
-                </p>
-                <p>
-                  In 2013, he founded <strong className="text-navy-dark">Kaikoduppom Charitable Trust</strong> with a vision of creating a safe
-                  and caring environment for those who had been neglected or left without support. Since then, the trust has continued to
-                  provide shelter, food, medical care, and compassionate assistance to abandoned and destitute elderly people, as well as
-                  support for visually and physically challenged individuals.
-                </p>
-                <p>
-                  Despite many challenges along the way, Dr. Jagadeesan Sellamuthu has remained steadfast in his mission, guided by integrity,
-                  discipline, and the belief that genuine service can transform lives. His journey reflects a simple but powerful principle:
-                  to help every suffering person to the best of one's ability and to build a society rooted in kindness and humanity.
-                </p>
-                <p>
-                  Today, his vision continues to inspire volunteers, donors, and well-wishers to join hands in creating a future where every
-                  individual is treated with respect, care, and compassion.
-                </p>
+                {t('founder.bio').map((para, i) => <p key={i}><Rich text={para} /></p>)}
               </div>
 
               <div className="flex flex-wrap gap-3 mt-8">
@@ -150,13 +92,13 @@ export default function FounderStory() {
                   to="/contact"
                   className="group inline-flex items-center gap-2 bg-navy hover:bg-navy-dark text-white px-6 py-3 rounded-full text-sm font-semibold transition-all hover:-translate-y-0.5"
                 >
-                  Support the Mission
+                  {t('founder.supportMission')}
                 </Link>
                 <Link
                   to="/volunteer"
                   className="inline-flex items-center gap-2 border-2 border-navy/20 hover:border-navy text-navy px-6 py-3 rounded-full text-sm font-semibold transition-all"
                 >
-                  Join as a Volunteer
+                  {t('founder.joinVolunteer')}
                 </Link>
               </div>
             </motion.div>
@@ -170,11 +112,11 @@ export default function FounderStory() {
         <div className="site-container">
           <div className="max-w-4xl mx-auto">
             <SectionHeading
-              eyebrow="Our Journey"
-              title="Milestones of Compassion"
-              subtitle="From a single act of kindness to a trusted home of care — the story of how Kaikoduppom grew into what it is today."
+              eyebrow={t('founder.journeyEyebrow')}
+              title={t('founder.journeyTitle')}
+              subtitle={t('founder.journeySub')}
             />
-            <Timeline events={founderMilestones} />
+            <Timeline events={t('founder.milestones')} />
           </div>
         </div>
       </section>

@@ -2,35 +2,29 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Star } from 'lucide-react'
 import SectionHeading from './SectionHeading'
+import { useLang } from '../i18n/LanguageContext'
 
 const testimonials = [
   {
     name: 'Dillibabu R.',
-    date: '4 months ago',
-    text: '"No one should be alone, helpless, or hungry — this organisation lives that mission every single day. The importance given to elder welfare under the leadership of Jagadeesan Sir is highly appreciable."',
     rating: 5,
   },
   {
     name: 'Akshaya A.M.',
-    date: '4 months ago',
-    text: '"Properly registered, well-managed, and officially recognized. This trust was founded with integrity and is run with such dedication. A remarkable organization that reflects humanity at its best."',
     rating: 5,
   },
   {
     name: 'Raja Sekar',
-    date: '4 months ago',
-    text: '"The staff treat everyone with kindness and respect — healthy food, medical care, and genuine support. They also help poor and abandoned elders outside the home."',
     rating: 5,
   },
   {
     name: 'Daisy',
-    date: '4 months ago',
-    text: '"The old age home is well maintained, clean, and peaceful. You can see the care taken to provide a comfortable environment for the elders."',
     rating: 5,
   },
 ]
 
-export default function TestimonialsSlider() {
+export default function TestimonialsSlider({ showHeading = true }) {
+  const { t } = useLang()
   return (
     <section className="section-padding bg-navy-dark relative overflow-hidden">
       {/* Background decorations */}
@@ -40,17 +34,19 @@ export default function TestimonialsSlider() {
       </div>
 
       <div className="site-container relative z-10">
-        <SectionHeading
-          eyebrow="Testimonials"
-          title="Words That Warm Our Hearts"
-          subtitle="Real reviews from real people who have witnessed the love and care at Kaikoduppom."
-          light
-        />
+        {showHeading && (
+          <SectionHeading
+            eyebrow={t('testimonialsSlider.eyebrow')}
+            title={t('testimonialsSlider.title')}
+            subtitle={t('testimonialsSlider.subtitle')}
+            light
+          />
+        )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 items-stretch">
-          {testimonials.map((t, i) => (
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch ${showHeading ? 'mt-16' : ''}`}>
+          {testimonials.map((r, i) => ({ ...r, ...t('testimonialsSlider.reviews')[i] })).map((r, i) => (
             <motion.div
-              key={t.name}
+              key={r.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -60,20 +56,20 @@ export default function TestimonialsSlider() {
             >
               {/* Stars */}
               <div className="flex gap-1 mb-6">
-                {Array.from({ length: t.rating }).map((_, j) => (
+                {Array.from({ length: r.rating }).map((_, j) => (
                   <Star key={j} size={16} className="text-gold fill-gold" />
                 ))}
               </div>
 
-              <p className="text-white/80 text-sm leading-[1.8] mb-8 flex-1">{t.text}</p>
+              <p className="text-white/80 text-sm leading-[1.8] mb-8 flex-1">{r.text}</p>
 
               <div className="flex items-center gap-4 pt-4 border-t border-white/10">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center text-navy-dark font-bold text-sm">
-                  {t.name[0]}
+                  {r.name[0]}
                 </div>
                 <div>
-                  <p className="text-white font-medium text-sm">{t.name}</p>
-                  <p className="text-white/40 text-xs">{t.date}</p>
+                  <p className="text-white font-medium text-sm">{r.name}</p>
+                  <p className="text-white/40 text-xs">{r.date}</p>
                 </div>
               </div>
             </motion.div>
@@ -99,7 +95,7 @@ export default function TestimonialsSlider() {
               <p className="text-white font-bold text-lg">5.0</p>
             </div>
             <div>
-              <p className="text-white/60 text-sm">521 Google Reviews</p>
+              <p className="text-white/60 text-sm">{t('testimonialsSlider.googleReviews')}</p>
             </div>
           </div>
         </motion.div>

@@ -4,15 +4,18 @@ import { ChevronRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import logoImg from '../assets/images.png'
 import bannerImg from '../assets/banner.jpg'
+import { useLang } from '../i18n/LanguageContext'
+import Rich from '../i18n/Rich'
 
 export default function AboutSection() {
+  const { t } = useLang()
   return (
     <section className="section-padding bg-warm-white pt-[calc(var(--section-padding-y)+64px)]">
       <div className="site-container">
         <SectionHeading
-          eyebrow="About Us"
-          title="A Shelter of Love &amp; Dignity"
-          subtitle="Founded with compassion and run with dedication, Kaikoduppom Trust stands as a beacon of hope for abandoned elders."
+          eyebrow={t('aboutSection.eyebrow')}
+          title={t('aboutSection.title')}
+          subtitle={t('aboutSection.subtitle')}
         />
 
         {/* Increased mt from mt-16 to mt-20/24 for breathing room below heading */}
@@ -47,43 +50,15 @@ export default function AboutSection() {
           >
             {/* Heading: bumped to text-3xl/4xl, tightened leading for visual weight */}
             <h3 className="font-playfair text-3xl sm:text-4xl font-bold text-navy-dark mb-8 leading-tight tracking-tight">
-              The Name Means{' '}
-              <span className="text-gold italic">"Let Us Hold Hands"</span>
+              {t('aboutSection.nameMeans')}{' '}
+              <span className="text-gold italic">{t('aboutSection.nameQuote')}</span>
             </h3>
 
             {/* Paragraphs: increased gap, slightly larger line-height */}
             <div className="space-y-6 text-text-muted text-sm sm:text-[0.9375rem] leading-[2] mb-10">
-              <p>
-                <strong className="text-navy-dark">
-                  Kaikoduppom Old Age Home & Charitable Trust
-                </strong>{' '}
-                was founded by{' '}
-                <strong className="text-navy-dark">
-                  Lion Dr. Jagadeesan Sellamuthu, Founder & Managing Trustee
-                </strong>,
-                whose vision is rooted in compassion, service, and humanity.
-              </p>
-
-              <p>
-                What began as a heartfelt effort to help a neglected elder in need soon
-                grew into a lifelong mission to care for poor, abandoned, and destitute
-                senior citizens. Guided by kindness and a deep sense of responsibility,
-                he established a place where every elder is treated with love, respect,
-                and dignity.
-              </p>
-
-              <p>
-                The trust is officially registered and recognized by both the State and
-                Central Government of India, reflecting its commitment to transparent and
-                dedicated service.
-              </p>
-
-              <p>
-                Today, the trust offers a safe and loving home for abandoned and
-                destitute elders by providing free accommodation, nutritious food,
-                medical care, daily essentials, and compassionate support—restoring
-                dignity, hope, and happiness to every life it touches.
-              </p>
+              {t('aboutSection.paras').map((para, i) => (
+                <p key={i}><Rich text={para} /></p>
+              ))}
             </div>
 
             {/* CTA Buttons: mt-10 → mt-12 for more breathing room above */}
@@ -93,7 +68,7 @@ export default function AboutSection() {
                 id="about-read-more"
                 className="group inline-flex items-center justify-center gap-2 h-[54px] bg-navy hover:bg-navy-dark text-white px-8 rounded-[14px] text-sm font-semibold shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-[3px]"
               >
-                Read Full Story
+                {t('aboutSection.readMore')}
                 <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
@@ -101,7 +76,7 @@ export default function AboutSection() {
                 id="about-founder-link"
                 className="inline-flex items-center justify-center gap-2 h-[54px] border-2 border-navy/20 hover:border-navy text-navy px-8 rounded-[14px] text-sm font-semibold shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-[3px]"
               >
-                Founder's Journey
+                {t('aboutSection.founderJourney')}
               </Link>
             </div>
           </motion.div>

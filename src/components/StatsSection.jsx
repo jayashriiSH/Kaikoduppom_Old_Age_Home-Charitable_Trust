@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import AnimatedCounter from './AnimatedCounter'
 import { Star, MessageCircle, Clock, Shield } from 'lucide-react'
+import { useLang } from '../i18n/LanguageContext'
 
 const stats = [
   { icon: Star,          value: 5,   suffix: '.0', label: 'Google Rating',    color: 'text-gold'        },
@@ -11,6 +12,7 @@ const stats = [
 ]
 
 export default function StatsSection() {
+  const { t } = useLang()
   return (
     <section className="relative z-20 bg-transparent -mt-16 mb-[-56px] md:-mt-20 md:mb-[-64px]">
       <div className="site-container">
@@ -24,7 +26,7 @@ export default function StatsSection() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px">
             {stats.map((stat, i) => (
               <motion.div
-                key={stat.label}
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -36,7 +38,7 @@ export default function StatsSection() {
                 <div className="text-3xl sm:text-4xl font-bold text-navy mb-1">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-xs text-text-muted uppercase tracking-wider font-medium">{stat.label}</p>
+                <p className="text-xs text-text-muted uppercase tracking-wider font-medium">{t('stats')[i]}</p>
               </motion.div>
             ))}
           </div>

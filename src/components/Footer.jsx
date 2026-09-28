@@ -1,22 +1,24 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react'
 import logo from '../assets/images.png'
+import { useLang } from '../i18n/LanguageContext'
 
 const quickLinks = [
-  { name: 'About Us',     path: '/about' },
-  { name: 'Our Services', path: '/services' },
-  { name: 'Programs',     path: '/programs' },
-  { name: 'Gallery',      path: '/gallery' },
-  { name: 'Testimonials', path: '/testimonials' },
+  { key: 'aboutUs',      path: '/about' },
+  { key: 'ourServices',  path: '/services' },
+  { key: 'programs',     path: '/programs' },
+  { key: 'gallery',      path: '/gallery' },
+  { key: 'testimonials', path: '/testimonials' },
 ]
 
 const supportLinks = [
-  { name: 'Volunteer',    path: '/volunteer' },
-  { name: 'Contact Us',   path: '/contact' },
-  { name: 'Founder Story', path: '/founder-story' },
+  { key: 'volunteer',    path: '/volunteer' },
+  { key: 'contactUs',    path: '/contact' },
+  { key: 'founderStory', path: '/founder-story' },
 ]
 
 export default function Footer() {
+  const { t } = useLang()
   return (
     <footer className="bg-navy-dark text-white relative overflow-hidden ">
       {/* Decorative top gradient line */}
@@ -35,13 +37,12 @@ export default function Footer() {
                 className="h-14 w-14 rounded-full border-2 border-gold/40 object-cover flex-shrink-0"
               />
               <div className="min-w-0">
-                <p className="font-semibold text-base leading-tight">Kaikoduppom</p>
-                <p className="text-text-light text-xs">Old Age Home &amp; Charitable  Trust</p>
+                <p className="font-semibold text-base leading-tight">{t('footer.brand')}</p>
+                <p className="text-text-light text-xs">{t('footer.brandSub')}</p>
               </div>
             </Link>
             <p className="text-text-light text-sm leading-relaxed mb-5">
-              A government-recognized shelter of love, care, and dignity for abandoned
-              and destitute elders.
+              {t('footer.tagline')}
             </p>
             <div className="flex flex-wrap gap-2">
               {['Facebook', 'Instagram', 'YouTube'].map((name) => (
@@ -60,7 +61,7 @@ export default function Footer() {
           {/* Column 2 — Quick Links */}
           <div className="lg:pt-1">
             <h4 className="text-gold text-xs font-semibold tracking-widest uppercase mb-5 pb-3 border-b border-white/10">
-              Quick Links
+              {t('footer.quickLinks')}
             </h4>
             <ul className="space-y-2">
               {quickLinks.map(link => (
@@ -70,7 +71,7 @@ export default function Footer() {
                     className="flex items-center gap-2 text-text-light hover:text-white text-sm py-1 transition-colors group"
                   >
                     <ChevronRight size={14} className="text-gold/50 group-hover:text-gold transition-colors flex-shrink-0" />
-                    {link.name}
+                    {t(`footer.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -80,7 +81,7 @@ export default function Footer() {
           {/* Column 3 — Support / Get Involved */}
           <div className="lg:pt-1">
             <h4 className="text-gold text-xs font-semibold tracking-widest uppercase mb-5 pb-3 border-b border-white/10">
-              Get Involved
+              {t('footer.getInvolved')}
             </h4>
             <ul className="space-y-2">
               {supportLinks.map(link => (
@@ -90,7 +91,7 @@ export default function Footer() {
                     className="flex items-center gap-2 text-text-light hover:text-white text-sm py-1 transition-colors group"
                   >
                     <ChevronRight size={14} className="text-gold/50 group-hover:text-gold transition-colors flex-shrink-0" />
-                    {link.name}
+                    {t(`footer.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -100,13 +101,13 @@ export default function Footer() {
           {/* Column 4 — Contact Information */}
           <div className="lg:pt-1">
             <h4 className="text-gold text-xs font-semibold tracking-widest uppercase mb-5 pb-3 border-b border-white/10">
-              Contact
+              {t('footer.contact')}
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Phone size={15} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">Phone</p>
+                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">{t('footer.phone')}</p>
                   <a
                     href="tel:09444441140"
                     className="text-white font-medium text-sm hover:text-gold transition-colors"
@@ -118,7 +119,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail size={15} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">Email</p>
+                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">{t('footer.email')}</p>
                   <a
                     href="mailto:kaikoduppomtrust@gmail.com"
                     className="text-white font-medium text-sm hover:text-gold transition-colors break-all"
@@ -130,15 +131,15 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={15} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">Location</p>
-                  <p className="text-white text-sm">Chennai , Tamil Nadu , India</p>
+                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">{t('footer.location')}</p>
+                  <p className="text-white text-sm">{t('footer.locationValue')}</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Clock size={15} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">Hours</p>
-                  <p className="text-white text-sm">Open 24 Hours</p>
+                  <p className="text-xs text-text-light uppercase tracking-wider mb-0.5">{t('footer.hours')}</p>
+                  <p className="text-white text-sm">{t('footer.open24')}</p>
                 </div>
               </li>
             </ul>
@@ -150,10 +151,16 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="site-container py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-text-light">
-          <p>© {new Date().getFullYear()} Kaikoduppom Old Age Home &amp; Charitable Trust. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {t('footer.rights')}
+            {' '}{t('footer.developedBy')}{' '}
+            <Link to="/developer" className="text-gold hover:text-gold-light underline-offset-2 hover:underline">
+              Jayashrii SH
+            </Link>
+          </p>
           <div className="flex flex-wrap justify-center gap-2">
-            <span className="px-2 py-1 bg-success/20 text-green-400 rounded text-[10px] font-medium">Govt. Registered NGO</span>
-            <span className="px-2 py-1 bg-gold/20 text-gold rounded text-[10px] font-medium">★ 5.0 Rating</span>
+            <span className="px-2 py-1 bg-success/20 text-green-400 rounded text-[10px] font-medium">{t('footer.govtNgo')}</span>
+            <span className="px-2 py-1 bg-gold/20 text-gold rounded text-[10px] font-medium">{t('footer.rating')}</span>
           </div>
         </div>
       </div>

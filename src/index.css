@@ -45,13 +45,10 @@
   --btn-px: 2rem;
 }
 
-/* ─── BASE STYLES ─── */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* ─── BASE STYLES ───
+   Kept inside @layer base so Tailwind utilities (p-*, m-*, h-*, …) can override them.
+   Tailwind's preflight already resets margin/padding/box-sizing. */
+@layer base {
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -79,6 +76,10 @@ img, iframe {
 img {
   display: block;
 }
+}
+
+/* ─── COMPONENT CLASSES ─── (layered so utilities still win) */
+@layer components {
 
 /* ─── SCROLLBAR STYLING ─── */
 ::-webkit-scrollbar { width: 8px; }
@@ -89,10 +90,6 @@ img {
 /* ─── UTILITY CLASSES ─── */
 .font-playfair { font-family: var(--font-playfair); }
 .font-inter    { font-family: var(--font-inter); }
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
 
 /* ─── SITE CONTAINER — 1280px max, centered, consistent padding ─── */
 .site-container {
@@ -283,8 +280,47 @@ img {
   transform: translateY(-3px);
   box-shadow: 0 10px 15px -3px rgba(200, 168, 75, 0.3), 0 4px 6px -4px rgba(200, 168, 75, 0.3);
 }
-.footer-bottom
-{
-  margin-top:10px;
-  
+.footer-bottom {
+  margin-top: 10px;
+}
+}
+
+/* ─── INDIC LANGUAGES (ta / hi / te) ───
+   Swap in Noto fonts that cover each script, and relax the Latin-tuned
+   letter-spacing and tight line-heights that clip or break Indic glyphs. */
+:root:lang(ta) {
+  --font-playfair: 'Noto Serif Tamil', 'Noto Sans Tamil', serif;
+  --font-inter: 'Noto Sans Tamil', 'Inter', system-ui, sans-serif;
+}
+:root:lang(hi) {
+  --font-playfair: 'Noto Serif Devanagari', 'Noto Sans Devanagari', serif;
+  --font-inter: 'Noto Sans Devanagari', 'Inter', system-ui, sans-serif;
+}
+:root:lang(te) {
+  --font-playfair: 'Noto Serif Telugu', 'Noto Sans Telugu', serif;
+  --font-inter: 'Noto Sans Telugu', 'Inter', system-ui, sans-serif;
+}
+:root:is(:lang(ta), :lang(hi), :lang(te)) body * {
+  letter-spacing: normal !important;
+}
+:root:is(:lang(ta), :lang(hi), :lang(te)) :is(h1, h2, h3, h4) {
+  line-height: 1.4 !important;
+}
+/* Indic headlines are much longer than the English one — keep the hero within one screen */
+:root:is(:lang(ta), :lang(hi), :lang(te)) .hero-title {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+}
+:root:lang(ta) .hero-title {
+  font-size: clamp(1.5rem, 5.5vw, 2.1rem);
+}
+:root:is(:lang(ta), :lang(hi), :lang(te)) .hero-desc {
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  :root:is(:lang(hi), :lang(te)) .hero-title {
+    font-size: clamp(2rem, 4.6vh, 3rem);
+  }
+  :root:lang(ta) .hero-title {
+    font-size: clamp(1.75rem, 3.8vh, 2.5rem);
+  }
 }

@@ -2,80 +2,66 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Home, Utensils, Stethoscope, Accessibility, Users, BookOpen, Siren, Heart, ChevronRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
+import { useLang } from '../i18n/LanguageContext'
 
 const services = [
   {
     icon: Home,
-    title: 'Shelter & Residential Care',
-    description: 'Providing a safe and loving home for abandoned, destitute, and homeless elders.',
     color: 'from-blue-500/10 to-blue-600/5',
     iconColor: 'text-blue-600',
   },
   {
     icon: Utensils,
-    title: 'Nutritious Meals & Daily Essentials',
-    description: 'Ensuring access to healthy food, clothing, and basic necessities.',
     color: 'from-orange-500/10 to-orange-600/5',
     iconColor: 'text-orange-600',
   },
   {
     icon: Stethoscope,
-    title: 'Medical Care & Health Support',
-    description: 'Offering medical assistance, regular health monitoring, medicines, and support for bedridden residents.',
     color: 'from-green-500/10 to-green-600/5',
     iconColor: 'text-green-600',
   },
   {
     icon: Accessibility,
-    title: 'Support for Persons with Disabilities',
-    description: 'Assisting physically challenged and visually impaired individuals with rehabilitation and essential care.',
     color: 'from-purple-500/10 to-purple-600/5',
     iconColor: 'text-purple-600',
   },
   {
     icon: Users,
-    title: 'Care for the Underprivileged',
-    description: 'Extending support to poor families, women, and orphaned children through welfare initiatives and basic assistance.',
     color: 'from-rose-500/10 to-rose-600/5',
     iconColor: 'text-rose-600',
   },
   {
     icon: BookOpen,
-    title: 'Education & Skill Development',
-    description: 'Promoting education, awareness, and opportunities for self-reliance and personal growth.',
     color: 'from-amber-500/10 to-amber-600/5',
     iconColor: 'text-amber-600',
   },
   {
     icon: Siren,
-    title: 'Emergency & Disaster Relief',
-    description: 'Providing food, medical aid, and essential supplies during times of crisis and natural disasters.',
     color: 'from-red-500/10 to-red-600/5',
     iconColor: 'text-red-600',
   },
   {
     icon: Heart,
-    title: 'Compassionate Care',
-    description: 'Creating a nurturing environment where every individual is treated with respect, kindness, and dignity.',
     color: 'from-teal-500/10 to-teal-600/5',
     iconColor: 'text-teal-600',
   },
 ]
 
 export default function ServicesGrid() {
+  const { t } = useLang()
   return (
     <section className="section-padding bg-cream">
       <div className="site-container">
         <SectionHeading
-          eyebrow="What We Do"
-          title="Our Services"
-          subtitle="Comprehensive care services designed to provide comfort, dignity, and love to every elder in our home."
+          eyebrow={t('servicesGrid.eyebrow')}
+          title={t('servicesGrid.title')}
+          subtitle={t('servicesGrid.subtitle')}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {services.map((service, i) => (
+          {services.map((s, i) => ({ ...s, ...t('servicesList')[i] })).map((service, i) => (
             <motion.div
-              key={service.title}
+              key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -111,7 +97,7 @@ export default function ServicesGrid() {
             to="/services"
             className="group inline-flex items-center justify-center gap-2 h-[54px] bg-navy hover:bg-navy-dark text-white px-8 rounded-[14px] text-sm font-semibold transition-all duration-300 hover:-translate-y-[3px] hover:shadow-lg"
           >
-            View All Services
+            {t('servicesGrid.viewAll')}
             <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>

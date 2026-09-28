@@ -8,31 +8,17 @@ import SupportMission from '../components/SupportMission'
 import SectionHeading from '../components/SectionHeading'
 import { CheckCircle2, ShieldCheck, HeartHandshake, Award } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useLang } from '../i18n/LanguageContext'
 
 const trustCards = [
-  {
-    icon: ShieldCheck,
-    title: 'Government Recognized',
-    desc: 'Fully recognized by the State and Central Government authorities, operating with transparency, accountability, and compliance with applicable regulations.'
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Every Contribution Matters',
-    desc: 'Every act of kindness directly supports abandoned and destitute elders by providing nutritious meals, safe shelter, medical care, and essential daily needs.'
-  },
-  {
-    icon: CheckCircle2,
-    title: 'Compassionate Admissions',
-    desc: 'We provide free care and shelter for abandoned and destitute elders, including those referred through Police Station Memos and authorized channels. Every elder is welcomed with dignity, respect, and compassion.'
-  },
-  {
-    icon: Award,
-    title: 'Trusted Care',
-    desc: 'Committed to delivering compassionate, high-quality care in a safe and supportive environment, earning the trust of residents, families, volunteers, and well-wishers.'
-  }
+  { icon: ShieldCheck },
+  { icon: HeartHandshake },
+  { icon: CheckCircle2 },
+  { icon: Award }
 ]
 
 export default function Home() {
+  const { t } = useLang()
   return (
     <PageTransition>
       <HeroSection />
@@ -44,12 +30,12 @@ export default function Home() {
       <section className="section-padding bg-warm-white relative overflow-hidden">
         <div className="site-container">
           <SectionHeading
-            eyebrow="Why Trust Us"
-            title="Built on Transparency &amp; Care"
+            eyebrow={t('home.trustEyebrow')}
+            title={t('home.trustTitle')}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {trustCards.map((item, idx) => (
+            {trustCards.map((c, idx) => ({ ...c, ...t('home.trustCards')[idx] })).map((item, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}

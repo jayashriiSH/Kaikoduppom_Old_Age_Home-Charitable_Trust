@@ -1,51 +1,15 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useLang } from '../i18n/LanguageContext'
 
-const timelineEvents = [
-  {
-    year: 'The Beginning',
-    title: 'A Vision is Born',
-    description: 'Founded through the vision and compassion of Founder Dr. Jagadeesan Sellamuthu, Kaikoduppom was born from a simple belief that every elderly person deserves care, dignity, and a place to call home.',
-  },
-  {
-    year: 'A Humble Start',
-    title: 'Building from the Heart',
-    description: 'With his own personal savings, the founder began by providing shelter, food, and daily care to abandoned elders, laying the foundation for a mission driven by kindness and selfless service.',
-  },
-  {
-    year: 'Growing with Purpose',
-    title: 'Expanding the Mission',
-    description: 'As the need grew, the trust expanded its services and strengthened its commitment to supporting destitute and abandoned senior citizens with compassion and respect.',
-  },
-  {
-    year: 'Serving Through Challenges',
-    title: 'Unwavering Commitment',
-    description: 'Through every challenge, the focus remained unchanged — ensuring uninterrupted care, safety, and support for every resident, no matter the circumstances.',
-  },
-  {
-    year: 'Expanding Care',
-    title: 'Deeper, Dedicated Care',
-    description: 'The home introduced enhanced medical assistance and dedicated care for bedridden residents, providing comfort and dignity to those with greater needs.',
-  },
-  {
-    year: 'Today',
-    title: 'A Family That Endures',
-    description: 'Kaikoduppom remains committed to offering shelter, nutritious meals, medical support, and loving care to abandoned and destitute elders — creating a family where they can live with dignity and hope.',
-  },
-]
-
-export default function Timeline({ events = timelineEvents }) {
+export default function Timeline({ events: eventsProp }) {
+  const { t } = useLang()
+  const events = eventsProp ?? t('timeline.events')
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '0px' })
 
   return (
     <div ref={ref} className="relative pt-4 md:max-w-5xl md:mx-auto">
-      {/* Central vertical line */}
-      <div
-        className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold via-navy/40 to-gold"
-        style={{ transform: 'translateX(-50%)' }}
-      />
-
       <div className="space-y-10 md:space-y-8">
         {events.map((event, i) => {
           const isEven = i % 2 === 0
@@ -58,6 +22,14 @@ export default function Timeline({ events = timelineEvents }) {
               transition={{ delay: i * 0.12, duration: 0.55 }}
               className="relative flex items-start md:items-stretch"
             >
+              {/* Connector to the next dot (stops at the last milestone) */}
+              {i < events.length - 1 && (
+                <div
+                  className="absolute left-5 md:left-1/2 top-3 -bottom-10 md:-bottom-8 w-px bg-gradient-to-b from-gold to-navy/30"
+                  style={{ transform: 'translateX(-50%)' }}
+                />
+              )}
+
               {/* Timeline dot */}
               <div
                 className="absolute left-5 md:left-1/2 w-4 h-4 rounded-full bg-gold border-[3px] border-white shadow-md z-10 flex-shrink-0"
@@ -87,12 +59,11 @@ export default function Timeline({ events = timelineEvents }) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: timelineEvents.length * 0.12 + 0.2, duration: 0.6 }}
+        transition={{ delay: events.length * 0.12 + 0.2, duration: 0.6 }}
         className="mt-14 border border-gold/30 bg-white rounded-2xl p-8 sm:p-10 text-center shadow-sm"
       >
         <p className="font-playfair text-lg sm:text-xl font-bold text-navy-dark leading-snug mb-3">
-          What began with one act of kindness continues as a movement of care,
-          dignity, and hope for those who need it most.
+          {t('timeline.quote')}
         </p>
         <div className="flex items-center justify-center gap-2 mt-4">
           <div className="h-px w-10 bg-gold/50" />
@@ -102,7 +73,7 @@ export default function Timeline({ events = timelineEvents }) {
           <div className="h-px w-10 bg-gold/50" />
         </div>
         <p className="text-gold-dark text-xs font-bold tracking-[0.18em] uppercase mt-3">
-          Together, We Can Continue This Journey.
+          {t('timeline.together')}
         </p>
       </motion.div>
     </div>

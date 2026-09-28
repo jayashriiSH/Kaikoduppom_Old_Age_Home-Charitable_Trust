@@ -3,23 +3,19 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Phone, MapPin, ChevronRight, ArrowRight } from 'lucide-react'
 import logo from '../assets/images.png'
+import { useLang } from '../i18n/LanguageContext'
+import { LanguageDropdown, LanguageGrid } from './LanguageSwitcher'
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Services', path: '/services' },
-  { name: 'Programs', path: '/programs' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'Testimonials', path: '/testimonials' },
-  { name: 'Volunteer', path: '/volunteer' },
-  { name: 'Contact', path: '/contact' },
-]
-
-const stripItems = [
-  'Registered Charitable Trust - Chennai , India',
-  'Open 24 Hours - Call: 094444 41140',
-  '5.0 stars on Google - 521 Reviews',
-  'State & Central Govt. Recognized NGO',
+  { key: 'home', path: '/' },
+  { key: 'about', path: '/about' },
+  { key: 'services', path: '/services' },
+  { key: 'programs', path: '/programs' },
+  { key: 'gallery', path: '/gallery' },
+  { key: 'testimonials', path: '/testimonials' },
+  { key: 'volunteer', path: '/volunteer' },
+  { key: 'contact', path: '/contact' },
+  { key: 'developer', path: '/developer' },
 ]
 
 /* ─── Stagger helpers ─── */
@@ -51,6 +47,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled]     = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const location = useLocation()
+  const { lang, t } = useLang()
+  // Indic labels run longer, so those languages switch to the hamburger menu one breakpoint later
+  const isIndic = lang !== 'en'
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -78,7 +77,7 @@ export default function Navbar() {
         >
           {[0, 1].map((i) => (
             <div key={i} className="flex gap-12 text-xs text-text-light">
-              {stripItems.map((item) => (
+              {t('nav.strip').map((item) => (
                 <span key={item} className="inline-flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                   {item}
@@ -115,17 +114,16 @@ export default function Navbar() {
                 className="h-11 w-11 lg:h-12 lg:w-12 rounded-full object-cover border-2 border-gold/50 group-hover:border-gold transition-colors"
                 whileHover={{ scale: 1.05, rotate: 5 }}
               />
-              <div className="hidden xl:block">
+              <div className="hidden 2xl:block">
                 <p className="text-white font-semibold text-sm leading-tight">
-                   Kaikoduppom charitable Trust (Regd.,) 
-
+                  {t('nav.trustName')}
                 </p>
-                <p className="text-text-light text-xs">&amp; Old age home for abandoned and destitute</p>
+                <p className="text-text-light text-xs">{t('nav.trustSub')}</p>
               </div>
             </Link>
 
             {/* Desktop Nav Links */}
-            <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 flex-1">
+            <div className={`hidden ${isIndic ? 'xl:flex' : 'lg:flex'} items-center justify-center gap-1 xl:gap-3 2xl:gap-6 flex-1 min-w-0`}>
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -136,7 +134,7 @@ export default function Navbar() {
                       : 'text-white/80 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  {link.name}
+                  {t(`nav.${link.key}`)}
                   {location.pathname === link.path && (
                     <motion.div
                       layoutId="navbar-indicator"
@@ -148,26 +146,28 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Desktop Phone Button */}
-            <div className="hidden lg:flex flex-shrink-0">
+            {/* Language + Phone */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <LanguageDropdown />
               <a
                 href="tel:09444441140"
-                className="flex items-center gap-2 px-5 py-2.5 bg-gold text-navy-dark font-bold rounded-[10px] border border-black/10 shadow-sm hover:shadow-md hover:bg-gold/90 transition-all duration-300 text-sm"
+                className={`hidden ${isIndic ? 'xl:flex' : 'lg:flex'} items-center gap-2 px-4 2xl:px-5 py-2.5 bg-gold text-navy-dark font-bold rounded-[10px] border border-black/10 shadow-sm hover:shadow-md hover:bg-gold/90 transition-all duration-300 text-sm`}
+                aria-label="094444 41140"
               >
                 <Phone size={16} />
-                <span>094444 41140</span>
+                <span className={isIndic ? 'hidden 2xl:inline' : 'hidden xl:inline'}>094444 41140</span>
               </a>
-            </div>
 
             {/* Mobile Hamburger */}
             <button
               onClick={() => setIsMobileOpen(true)}
-              className="lg:hidden flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0"
+              className={`${isIndic ? 'xl:hidden' : 'lg:hidden'} flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0`}
               aria-label="Open navigation menu"
               aria-expanded={isMobileOpen}
             >
               <Menu size={22} />
             </button>
+            </div>
 
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm lg:hidden"
+              className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm ${isIndic ? 'xl:hidden' : 'lg:hidden'}`}
               onClick={() => setIsMobileOpen(false)}
               aria-hidden="true"
             />
@@ -196,7 +196,7 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="fixed inset-0 z-[70] lg:hidden flex flex-col"
+              className={`fixed inset-0 z-[70] ${isIndic ? 'xl:hidden' : 'lg:hidden'} flex flex-col`}
               style={{
                 background: 'linear-gradient(160deg, #0d1b2a 0%, #112240 55%, #0a1628 100%)',
               }}
@@ -223,9 +223,7 @@ export default function Navbar() {
 
                 {/* Trust Name – centered */}
                 <div className="flex-1 text-center px-3">
-                  <p className="text-white font-semibold text-[13px] leading-tight">
-Kaikoduppom Charitable Trust(Reg.,)</p>
-                 
+                  <p className="text-white font-semibold text-[13px] leading-tight">{t('nav.trustName')}</p>
                 </div>
 
                 {/* Close */}
@@ -243,7 +241,7 @@ Kaikoduppom Charitable Trust(Reg.,)</p>
 
                 {/* Section Label */}
                 <p className="text-[11px] font-semibold tracking-[0.15em] text-gold/70 uppercase mb-4 pl-1">
-                  Menu
+                  {t('nav.menu')}
                 </p>
 
                 {/* Nav Links */}
@@ -269,7 +267,7 @@ Kaikoduppom Charitable Trust(Reg.,)</p>
                           style={isActive ? { boxShadow: '0 0 24px rgba(212,175,55,0.08)' } : {}}
                           onClick={() => setIsMobileOpen(false)}
                         >
-                          {link.name}
+                          {t(`nav.${link.key}`)}
                           <ChevronRight
                             size={18}
                             className={`transition-colors ${isActive ? 'text-gold' : 'text-white/30'}`}
@@ -293,11 +291,28 @@ Kaikoduppom Charitable Trust(Reg.,)</p>
                     className="flex flex-col gap-2 p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 active:scale-95 transition-all duration-200"
                     style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)' }}
                   >
-                  
+                    <Phone size={18} className="text-gold" />
+                    <span className="text-white/50 text-[11px] font-medium uppercase tracking-wider">{t('nav.callUs')}</span>
+                    <span className="text-white text-sm font-semibold">094444 41140</span>
                   </a>
 
-                 
+                  {/* Location Card */}
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsMobileOpen(false)}
+                    className="flex flex-col gap-2 p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 active:scale-95 transition-all duration-200"
+                    style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)' }}
+                  >
+                    <MapPin size={18} className="text-gold" />
+                    <span className="text-white/50 text-[11px] font-medium uppercase tracking-wider">{t('nav.visitUs')}</span>
+                    <span className="text-white text-sm font-semibold">{t('nav.findLocation')}</span>
+                  </Link>
                 </motion.div>
+
+                {/* ── Language ── */}
+                <div className="mt-8">
+                  <LanguageGrid />
+                </div>
 
                 {/* ── Donation CTA ── */}
                 <motion.div
@@ -311,7 +326,7 @@ Kaikoduppom Charitable Trust(Reg.,)</p>
                     onClick={() => setIsMobileOpen(false)}
                     className="flex items-center justify-center gap-3 w-full h-14 rounded-2xl bg-gold text-navy-dark font-bold text-base hover:bg-gold/90 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-gold/20"
                   >
-                    Support Our Mission
+                    {t('nav.supportMission')}
                     <ArrowRight size={18} />
                   </Link>
                 </motion.div>
@@ -326,10 +341,10 @@ Kaikoduppom Charitable Trust(Reg.,)</p>
                 className="px-5 py-5 border-t border-white/10 flex-shrink-0 text-center space-y-0.5"
               >
                 <p className="text-white/40 text-[11px] font-medium tracking-wide">
-                  Govt. Recognized NGO
+                  {t('nav.govtNgo')}
                 </p>
                 <p className="text-white/30 text-[11px]">
-                  Registered Charitable Trust · Puducherry, India
+                  {t('nav.menuFooter')}
                 </p>
               </motion.div>
 

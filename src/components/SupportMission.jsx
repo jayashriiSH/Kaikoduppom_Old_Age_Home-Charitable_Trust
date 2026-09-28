@@ -2,8 +2,10 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { HandHeart, Phone, ChevronRight } from 'lucide-react'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function SupportMission() {
+  const { t } = useLang()
   return (
     <section className="relative section-padding overflow-hidden">
       {/* Background */}
@@ -36,7 +38,7 @@ export default function SupportMission() {
             transition={{ delay: 0.05, duration: 0.45 }}
             className="text-xs font-bold tracking-[0.2em] uppercase text-navy-dark/75"
           >
-            Stand With Us
+            {t('support.eyebrow')}
           </motion.p>
 
           <motion.h2
@@ -46,7 +48,7 @@ export default function SupportMission() {
             transition={{ delay: 0.1, duration: 0.6 }}
             className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-dark leading-tight"
           >
-            Support Our Mission
+            {t('support.title')}
           </motion.h2>
 
           <motion.p
@@ -56,8 +58,7 @@ export default function SupportMission() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-navy-dark/75 text-base sm:text-lg section-description"
           >
-            Your encouragement, volunteering, and spreading awareness help us continue serving abandoned elders with dignity,
-            compassion, and reliable care .
+            {t('support.desc')}
           </motion.p>
 
           <motion.div
@@ -72,7 +73,7 @@ export default function SupportMission() {
               id="support-contact-us"
               className="group inline-flex items-center justify-center gap-2 h-[54px] bg-navy-dark hover:bg-navy text-white font-semibold px-8 rounded-[14px] text-sm shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-[3px]"
             >
-              Contact Us
+              {t('support.contact')}
               <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
@@ -81,7 +82,7 @@ export default function SupportMission() {
               className="inline-flex items-center justify-center gap-2 h-[54px] bg-white/35 backdrop-blur-sm hover:bg-white/55 text-navy-dark font-semibold px-8 rounded-[14px] text-sm shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-[3px]"
             >
               <Phone size={16} />
-              Call: 094444 41140
+              {t('support.call')}
             </a>
           </motion.div>
         </div>

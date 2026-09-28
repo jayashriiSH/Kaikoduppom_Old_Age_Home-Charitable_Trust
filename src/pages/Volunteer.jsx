@@ -2,6 +2,8 @@ import PageTransition from '../components/PageTransition'
 import SectionHeading from '../components/SectionHeading'
 import { motion } from 'framer-motion'
 import { Heart, Clock, Phone, Palette, CheckCircle2, Utensils, Stethoscope, HandHeart } from 'lucide-react'
+import { useLang } from '../i18n/LanguageContext'
+import Rich from '../i18n/Rich'
 
 const roles = [
   {
@@ -36,22 +38,8 @@ const roles = [
   }
 ]
 
-const whyVolunteer = [
-  {
-    title: 'Reduce Loneliness',
-    desc: 'Many resident elders feel isolated due to abandonment. Conversing with volunteers offers a vital emotional outlet.'
-  },
-  {
-    title: 'Support Care Workers',
-    desc: 'Our dedicated staff work around the clock. Your support helps ease kitchen, administration, and clean-up duties.'
-  },
-  {
-    title: 'Flexible Schedules',
-    desc: 'Whether you have 2 hours on Sunday or a day during weekdays, you are welcome to schedule visits in advance.'
-  }
-]
-
 export default function Volunteer() {
+  const { t } = useLang()
   return (
     <PageTransition>
       {/* Banner Header */}
@@ -66,12 +54,12 @@ export default function Volunteer() {
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-warm-white to-transparent" />
 
         <div className="relative z-10 site-container w-full">
-          <span className="text-gold text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">Give Your Time</span>
+          <span className="text-gold text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t('banner.volunteer.eyebrow')}</span>
           <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-            Join Our Volunteer Family
+            {t('banner.volunteer.title')}
           </h1>
           <p className="text-white/60 text-sm sm:text-base section-description">
-            Your presence can brighten an elder's day. Use your skills, time, or companionship to support our residents.
+            {t('banner.volunteer.desc')}
           </p>
         </div>
       </div>
@@ -80,13 +68,13 @@ export default function Volunteer() {
       <section className="section-padding bg-warm-white">
         <div className="site-container">
           <SectionHeading
-            eyebrow="Opportunities"
-            title="How You Can Assist"
-            subtitle="Choose a channel that matches your schedule and skillset. Every effort counts."
+            eyebrow={t('volunteer.eyebrow')}
+            title={t('volunteer.title')}
+            subtitle={t('volunteer.subtitle')}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {roles.map((r, i) => (
+            {roles.map((r, i) => ({ ...r, ...t('volunteer.roles')[i] })).map((r, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -113,13 +101,13 @@ export default function Volunteer() {
 
             {/* Left — Why Volunteer */}
             <div>
-              <span className="text-xs font-bold tracking-widest text-gold-dark uppercase mb-3 block">Make a Connection</span>
+              <span className="text-xs font-bold tracking-widest text-gold-dark uppercase mb-3 block">{t('volunteer.connectEyebrow')}</span>
               <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-navy-dark mb-6 leading-snug">
-                Why Volunteer at Kaikoduppom?
+                {t('volunteer.whyTitle')}
               </h2>
 
               <ul className="space-y-5 mb-8">
-                {whyVolunteer.map((item, idx) => (
+                {t('volunteer.why').map((item, idx) => (
                   <li key={idx} className="flex gap-4">
                     <div className="w-6 h-6 rounded-full bg-gold/15 flex items-center justify-center text-gold-dark flex-shrink-0 mt-0.5">
                       <CheckCircle2 className="w-4 h-4" />
@@ -136,9 +124,7 @@ export default function Volunteer() {
               <div className="bg-white border border-border p-5 rounded-xl flex items-start gap-3">
                 <Clock className="w-5 h-5 text-gold-dark flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-text-muted leading-relaxed">
-                  Visiting hours for volunteers are daily between{' '}
-                  <strong className="text-navy-dark">9:00 AM to 12:00 PM</strong> and{' '}
-                  <strong className="text-navy-dark">4:00 PM to 6:30 PM</strong>.
+                  <Rich text={t('volunteer.visitingHours')} />
                 </p>
               </div>
             </div>
@@ -149,13 +135,11 @@ export default function Volunteer() {
   </div>
 
   <h3 className="font-playfair text-2xl font-bold text-navy-dark mb-4 leading-snug">
-    Volunteer With Us
+    {t('volunteer.ctaTitle')}
   </h3>
 
   <p className="text-text-muted text-sm leading-relaxed max-w-sm mb-8">
-    Become a part of our mission to serve abandoned and destitute elders with
-    compassion and dignity. Every act of kindness—whether big or small—helps
-    create a safer, happier, and more caring home for those who need it most.
+    {t('volunteer.ctaDesc')}
   </p>
 
   {/* Phone Numbers */}
@@ -186,7 +170,7 @@ export default function Volunteer() {
   </div>
 
   <p className="text-xs text-text-muted">
-    or email us at{" "}
+    {t('volunteer.orEmail')}{" "}
     <a
       href="mailto:kaikoduppomjagadeesan@gmail.com"
       className="text-navy-dark font-medium hover:text-gold transition-colors"
@@ -199,9 +183,9 @@ export default function Volunteer() {
     <Clock className="w-4 h-4 text-gold-dark flex-shrink-0 mt-0.5" />
     <p className="text-xs text-text-muted leading-relaxed text-left">
       <strong className="text-navy-dark">
-        Volunteer Visiting Hours:
+        {t('volunteer.hoursLabel')}
       </strong>{" "}
-      9:00 AM – 12:00 PM and 4:00 PM – 6:30 PM (or by prior appointment).
+      {t('volunteer.hoursValue')}
     </p>
   </div>
 </div>
